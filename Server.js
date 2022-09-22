@@ -3,6 +3,7 @@ const morgan = require('morgan')
 const connectDB = require('./config/db')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const MylibraryRoute = require('./routers/mylibrary')
 // Config dotev
 require('dotenv').config({
     path: './config/config.env'
@@ -44,6 +45,7 @@ app.use((req, res) => {
 
 const PORT = process.env.PORT || 5000
 
+app.use('/api/book', MylibraryRoute)
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
 });

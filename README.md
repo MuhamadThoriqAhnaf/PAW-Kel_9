@@ -1,8 +1,8 @@
 <h1 align="center">
-  Pembukuan Keuangan
+  MyLibrary
 </h1>
 
-<p align="center">Rest API Pembukuan Keuangan</p><br>
+<p align="center">Rest API MyLibrary</p><br>
 <p align="center">Kelompok 9</p><br>
 
 ### Anggota Kelompok

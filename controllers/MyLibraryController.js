@@ -5,12 +5,36 @@ const Mylibrary = require('../model/Mylibrarymodel');
 
 exports.createBook = AsyncHandler(async(req,res) => {
     const {judul, penulis, terbit, pinjam, pengembalian} = req.body
-    const mylibrary = await Mylibrary.save({judul, penulis, terbit, pinjam, pengembalian});
+    const mylibrary = await Mylibrary.save(judul, penulis, terbit, pinjam, pengembalian);
     res.status(201).json({
         success: true,
         data: mylibrary,
         message: 'Data book is created successfully'
     })
+})
+
+exports.updateBook = AsyncHandler(async(req,res) => {
+    const {judul, penulis, terbit, pinjam, pengembalian} = req.body
+    const existBook = await Mylibrary.findOne({_id: req.params.id})
+    if(existBook){
+        existBook.judul = judul;
+        existBook.penulis = penulis;
+        existBook.terbit = terbit;
+        existBook.pinjam = pinjam;
+        existBook.pengembalian = pengembalian;
+        const updatedBook = await existBook.save();
+        res.status(200).json({
+            success: true,
+            data: updatedBook,
+            message: 'Book is updated successfully'
+        })
+    }else{
+        res.status(401).json({
+            success: false,
+            data: null,
+            message: 'Book is not found'
+        })
+    }
 })
 
 exports.getSingleBook = AsyncHandler(async(req,res)=> {

@@ -4,11 +4,11 @@ const AsyncHandler = require('express-async-handler');
 const Mylibrary = require('../model/Mylibrarymodel');
 
 exports.createBook = AsyncHandler(async(req,res) => {
-    const {judul, penulis, terbit, pinjam, pengembalian} = req.body
-    const mylibrary = await Mylibrary.save(judul, penulis, terbit, pinjam, pengembalian);
+    // const {judul, penulis, terbit, pinjam, pengembalian} = req.body
+    // const mylibrary = await Mylibrary.save(judul, penulis, terbit, pinjam, pengembalian);
     res.status(201).json({
         success: true,
-        data: mylibrary,
+        data: "mylibrary",
         message: 'Data book is created successfully'
     })
 })
@@ -36,6 +36,7 @@ exports.updateBook = AsyncHandler(async(req,res) => {
         })
     }
 })
+
 
 exports.getSingleBook = AsyncHandler(async(req,res)=> {
     const existBook = await Mylibrary.findOne({_id : req.params.id});
@@ -70,3 +71,4 @@ exports.getAllBooks = AsyncHandler(async(req,res)=> {
         })
     }
 })
+

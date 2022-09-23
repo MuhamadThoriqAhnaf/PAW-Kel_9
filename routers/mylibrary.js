@@ -2,9 +2,9 @@ const express = require('express')
 const router = express.Router();
 
 const {createBook, getSingleBook, getAllBooks} = require('../controllers/MyLibraryController');
-router.route('/').post(createBook);
-router.route('/:id').put(updateBook);
-router.route('/:id').get(getSingleBook);
-router.route('/').get(getAllBooks);
+router.post('/', createBook);
+router.get('/:id', getSingleBook);
+router.get('/', getAllBooks);
+
 
 module.exports=router

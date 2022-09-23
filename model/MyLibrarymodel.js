@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
-const MyLibrarySchema = new mongoose.Schema({
+const MyLibrarySchema =  mongoose.Schema({
     judul: {
         type: String,
         required: true
     },
     penulis: {
         type: String,
-        required: true
+        required: true,
     },
     terbit: {
         type: Date,

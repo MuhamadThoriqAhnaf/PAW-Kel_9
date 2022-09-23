@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/MuhamadThoriqAhnaf/PAW-XX#readme",
   "dependencies": {
-    "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",

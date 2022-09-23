@@ -16,7 +16,8 @@ const app = express()
 connectDB();
 
 // body parser
-app.use(bodyParser.json())
+// app.use(bodyParser.json())
+app.use(express.json())
 // Load routes
 // const authRouter = require('./routes/auth.route')
 // const userRouter = require('./routes/user.route')
@@ -35,6 +36,14 @@ if (process.env.NODE_ENV === 'development') {
 // app.use('/api', userRouter)
 // app.use('/api', userDataRouter)
 // app.use('/api', imageRoute)
+app.use('/api/book', MylibraryRoute)
+
+const PORT = process.env.PORT || 5000
+
+
+app.use('/', (req, res) => {
+    res.json({success: true, message:"selamat datang"})
+})
 
 app.use((req, res) => {
     res.status(404).json({
@@ -42,14 +51,11 @@ app.use((req, res) => {
         msg: "Page not founded"
     })
 })
-
-const PORT = process.env.PORT || 5000
-
-app.use('/api/book', MylibraryRoute)
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
 });
 
 
-const removeBooks=require('./routes/Books.routes')
-app.use('/api',removeBooks)
+// const removeBooks=require('./routes/Books.routes')
+// const { json } = require('body-parser')
+// app.use('/api',removeBooks)

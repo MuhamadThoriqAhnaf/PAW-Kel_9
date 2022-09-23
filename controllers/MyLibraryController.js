@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const AsyncHandler = require('express-async-handler');
 
-const Mylibrary = require('../models/Mylibrarymodel');
+const Mylibrary = require('../model/Mylibrarymodel');
 
 exports.createBook = AsyncHandler(async(req,res) => {
     const {judul, penulis, terbit, pinjam, pengembalian} = req.body

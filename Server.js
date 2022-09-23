@@ -50,9 +50,6 @@ app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
 });
 
-app.use('/api/book', MylibraryRoute)
-app.listen(PORT, () => {
-    console.log(`App listening on port ${PORT}`);
-});
+
 const removeBooks=require('./routes/Books.routes')
 app.use('/api',removeBooks)

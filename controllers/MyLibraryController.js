@@ -4,13 +4,31 @@ const AsyncHandler = require('express-async-handler');
 const Mylibrary = require('../model/Mylibrarymodel');
 
 exports.createBook = AsyncHandler(async(req,res) => {
-    // const {judul, penulis, terbit, pinjam, pengembalian} = req.body
+    const {judul, penulis, terbit, pinjam, pengembalian} = req.body
+    const book = new Mylibrary({judul,penulis, terbit, pinjam, pengembalian})
+     book.save ((err, user) => {
+        if (err) {
+          console.log('Save error', errorHandler(err));
+          return res.status(401).json({
+            errors: errorHandler(err)
+          });
+        } else {
+
+
+          return res.json({
+            success: true,
+            message: user,
+            message: 'Aktivasi sukses silakan kembali ke halaman login'
+          });
+        }
+      });
+
     // const mylibrary = await Mylibrary.save(judul, penulis, terbit, pinjam, pengembalian);
-    res.status(201).json({
-        success: true,
-        data: "mylibrary",
-        message: 'Data book is created successfully'
-    })
+    // res.status(201).json({
+    //     success: true,
+    //     data: "mylibrary",
+    //     message: 'Data book is created successfully'
+    // })
 })
 
 exports.updateBook = AsyncHandler(async(req,res) => {

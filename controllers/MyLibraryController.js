@@ -4,7 +4,32 @@ const AsyncHandler = require('express-async-handler');
 const Mylibrary = require('../model/Mylibrarymodel');
 
 exports.createBook = AsyncHandler(async(req,res) => {
-    const {judul, penulis, terbit, pinjam, pengembalian} = req.body
+    if (!req.body.judul){
+        res.status(400).send({message: "Content can't be empty!"});
+        return;
+    }
+
+    const mylibrary = new Mylibrary({
+        judul: req.body.judul,
+        penulis: req.body.penulis,
+        terbit: req.body.terbit,
+        pinjam: req.body.pinjam,
+        pengembalian: req.body.pengembalian
+    });
+    
+    mylibrary
+        .save(mylibrary)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                err.message || "Some error occured while creating the Book"
+            });
+        });
+    });
+   /* const {judul, penulis, terbit, pinjam, pengembalian} = req.body
     const book = new Mylibrary({judul,penulis, terbit, pinjam, pengembalian})
      book.save ((err, user) => {
         if (err) {
@@ -30,6 +55,7 @@ exports.createBook = AsyncHandler(async(req,res) => {
     //     message: 'Data book is created successfully'
     // })
 })
+*/
 
 exports.updateBook = AsyncHandler(async(req,res) => {
     const {judul, penulis, terbit, pinjam, pengembalian} = req.body

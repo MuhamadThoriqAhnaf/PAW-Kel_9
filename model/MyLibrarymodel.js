@@ -23,7 +23,7 @@ const MyLibrarySchema =  mongoose.Schema({
     }
 })
 
-const Mylibrary = mongoose.model('Mylibrary', MyLibrarySchema)
+const Mylibrary = mongoose.model('Mylibraries', MyLibrarySchema)
 
 module.exports =Mylibrary
 // export default mongoose.model("mylibraries", MyLibrarySchema )

@@ -1,9 +1,9 @@
-const express = require('express')
-const router = express.Router()
+// const express = require('express')
+// const router = express.Router()
 
-const{
-    removeBooks
-}=require('../controllers/delete.controllers')
+// const{
+//     removeBooks
+// }=require('../controllers/delete.controllers')
 
-router.delete('/removebook/:id', removeBooks)
-module.exports=router   
+// router.delete('/removebook/:id', removeBooks)
+// module.exports=router   

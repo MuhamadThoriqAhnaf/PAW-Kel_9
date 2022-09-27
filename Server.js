@@ -8,10 +8,9 @@ const MylibraryRoute = require('./routers/mylibrary')
 require('dotenv').config({
     path: './config/config.env'
 })
-
-
+const logger = morgan
 const app = express()
-
+app.use(logger('dev'))
 // Connect to database
 connectDB();
 
@@ -41,9 +40,9 @@ app.use('/api/book', MylibraryRoute)
 const PORT = process.env.PORT || 5000
 
 
-app.use('/', (req, res) => {
-    res.json({success: true, message:"selamat datang"})
-})
+// app.use('/', (req, res) => {
+//     res.json({success: true, message:"selamat datang"})
+// })
 
 app.use((req, res) => {
     res.status(404).json({

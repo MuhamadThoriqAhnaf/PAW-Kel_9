@@ -14,7 +14,6 @@ app.use(logger('dev'))
 // Connect to database
 connectDB();
 
-// body parser
 // app.use(bodyParser.json())
 app.use(express.json())
 // Load routes

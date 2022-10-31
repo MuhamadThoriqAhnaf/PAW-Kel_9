@@ -3,6 +3,7 @@ const morgan = require('morgan')
 const connectDB = require('./config/db')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const cookieSession = require("cookie-session");
 const MylibraryRoute = require('./routers/mylibrary')
 // Config dotev
 require('dotenv').config({
@@ -34,6 +35,22 @@ if (process.env.NODE_ENV === 'development') {
 // app.use('/api', userRouter)
 // app.use('/api', userDataRouter)
 // app.use('/api', imageRoute)
+
+// middlewares
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+app.use(
+    cookieSession({
+        name: "mylibrary",
+        secret: process.env.COOKIE_SECRET,
+        httpOnly: true
+    })
+);
+
+require('./routers/auth.routes')(app);
+require('./routers/user.routes')(app);
+
 app.use('/api/book', MylibraryRoute)
 
 const PORT = process.env.PORT || 5000
@@ -52,6 +69,38 @@ app.use((req, res) => {
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
 });
+
+const db = require("./model");
+const Role = db.role;
+
+function initial() {
+  Role.estimatedDocumentCount((err, count) => {
+    if (!err && count === 0) {
+      new Role({
+        name: "user"
+      }).save(err => {
+        if (err) {
+          console.log("error", err);
+        }
+
+        console.log("added 'user' to roles collection");
+      });
+
+      
+      new Role({
+        name: "admin"
+      }).save(err => {
+        if (err) {
+          console.log("error", err);
+        }
+
+        console.log("added 'admin' to roles collection");
+      });
+    }
+  });
+}
+
+// routes
 
 
 // const removeBooks=require('./routes/Books.routes')

@@ -26,9 +26,8 @@
   npm install
   npm run dev
   ```
-## Directories
-.
-└── 
+### Directories
+    .
     ├── src                    
     │   ├── config               
     │   ├── controllers           

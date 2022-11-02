@@ -41,7 +41,7 @@
 ### Explanation
 1. config
   
-  Berisi tentang configuration aplikasi.
+   Berisi tentang configuration aplikasi.
   
 1. routers
 

@@ -2,7 +2,10 @@
   MyLibrary
 </h1>
 
-<p align="center">Rest API MyLibrary</p><br>
+<p align="center">
+  MyLibrary merupakan Aplikasi Web yang memiliki fungsi untuk melakukan pembukuan terhadap Novel/Buku
+</p>
+
 <p align="center">Kelompok 9</p><br>
 
 ### Anggota Kelompok
@@ -15,3 +18,24 @@
 |5. | Agnes Suarna               | 20/463589/TK/51581 | 
 
 
+### How to use
+- [Download](https://nodejs.org/en/download/) and install **Node.js** version `16.15` or higher.
+- Clone this project on your computer.
+- Don't forget to fill the .env files with 
+  ```bash
+  npm install
+  npm run dev
+  ```
+## Directories
+.
+└── 
+    ├── src                    
+    │   ├── config               
+    │   ├── controllers           
+    │   ├── middleware            
+    │   ├── model                
+    │   └── routers                               
+    ├── Server.js                 
+    ├── package.json
+    └── README.md
+  

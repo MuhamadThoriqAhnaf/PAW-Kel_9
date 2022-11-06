@@ -6,7 +6,7 @@ exports.removeBooks = (req, res) => {
         res.status(404).send('Book was not found');
       }
       else{
-        result.remove(function(removeerr, removresult) {
+        result.remove(function(removeerr, ) {
           if (removeerr) {
             res.status(400).send(removeerr.message);
           }

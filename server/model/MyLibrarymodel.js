@@ -20,7 +20,12 @@ const MyLibrarySchema =  mongoose.Schema({
     pengembalian: {
         type: Date,
         required: true
-    }
+    },
+    stock: {
+        type : Number,
+        required : true
+    },
+    log : {type: Array, default : []}
 })
 
 const Mylibrary = mongoose.model('Mylibraries', MyLibrarySchema)

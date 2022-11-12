@@ -4,7 +4,20 @@ export default function Welcome() {
   return (
     <>
         <a href='/list'>BOOKLIST</a>
-        <img src="https://cf.shopee.co.id/file/4a7dde1823c3a1e5494f3eb5af7523fd"></img>
+        <img src="https://atjehwatch.com/wp-content/uploads/2021/02/upin-tak-lagi-botak.jpg"></img>
+        <form>
+          <label>
+            Username:
+              <input type="text" name="Username" />
+          </label>
+          
+          <label>
+            Password:
+              <input type="text" name="Password" />
+          </label>
+
+          <input type="submit" value="Submit" />
+        </form>
     </>
   )
 }

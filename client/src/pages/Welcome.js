@@ -6,18 +6,13 @@ export default function Welcome() {
         <a href='/list'>BOOKLIST</a>
         <img src="https://atjehwatch.com/wp-content/uploads/2021/02/upin-tak-lagi-botak.jpg"></img>
         <form>
-          <label>
-            Username:
-              <input type="text" name="Username" />
-          </label>
-          
-          <label>
-            Password:
-              <input type="text" name="Password" />
-          </label>
-
-          <input type="submit" value="Submit" />
+          <label for="username">Username: </label>
+          <input type="text" id="username" name="username"></input><br></br>
+          <label for="password">Passsword: </label>
+          <input type="password" id="password" name="password"></input><br></br>
+          <input type="submit" value="Submit"></input>
         </form>
+        <a href='/list'>Sign Up</a>
     </>
   )
 }

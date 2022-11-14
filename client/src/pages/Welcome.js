@@ -12,7 +12,7 @@ export default function Welcome() {
           <input type="password" id="password" name="password"></input><br></br>
           <input type="submit" value="Submit"></input>
         </form>
-        <a href='/list'>Sign Up</a>
+        <a href='/signup'>Sign Up</a>
     </>
   )
 }

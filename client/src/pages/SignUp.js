@@ -7,7 +7,8 @@ export default function SignUp() {
         <input type="text" id="username" name="username"></input><br></br>
         <label for="password">Passsword: </label>
         <input type="password" id="password" name="password"></input><br></br>
-        <input type="submit" value="Submit"></input>
+        <input type="submit" value="Login"></input>
+
     </form>
   )
 }

@@ -5,7 +5,7 @@ export default function Welcome() {
     <>
         
         <img src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"></img>
-        <a href='/signup'>Login</a>
+        <a href='/login'>Login</a>
     </>
   )
 }

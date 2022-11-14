@@ -83,7 +83,9 @@ exports.signin = (req, res) => {
       );
 
       if (!passwordIsValid) {
-        return res.status(401).send({ message: "Invalid Password!" });
+        return res.status(401).send({ 
+          accessToken : null,
+          message: "Invalid Password!" });
       }
 
       var token = jwt.sign({ id: user.id }, config.secret, {
@@ -96,7 +98,7 @@ exports.signin = (req, res) => {
         authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
       }
 
-      req.session.token = token;
+      //req.session.token = token;
 
       res.status(200).send({
         id: user._id,

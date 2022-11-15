@@ -1,14 +1,11 @@
 import React from 'react'
-import Navbar from '../components/navbar'
 
 export default function Welcome() {
   return (
     <>
-    <Navbar />
-    <div className='mx-[140px] my-[16px]'>
-      <a href='/signup'className='text-[15px]'>Login</a>
-    </div>
-    
+        
+        <img src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"></img>
+        <a href='/login'>Login</a>
     </>
   )
 }

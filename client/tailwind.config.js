@@ -17,6 +17,9 @@ module.exports = {
         'book-pink': "url('../public/assets/asset-book-pink.svg')",
         'star': "url('../public/assets/asset-star.svg')",
       },
+      colors: {
+        'tosca': '#D9E5D6',
+      },
     },
   },
   plugins: [],

@@ -6,17 +6,24 @@ import axios from "axios"
 export default function Booklist() {
   // const { data, loading, error } = useFetch("http://localhost:5000/api/book");
   // console.log(data)
-  const [data, setData] = useState({})
+  const [data, setData] = useState([])
   
   useEffect(() => {
-    axios.get("http://localhost:5000/api/book").then((response) => {
-      setData(response.data);
-      console.log(data)
+    axios.get("http://localhost:5000/api/book/getbook").then((response) => {
+      setData(response.data.data);
+      console.log(response.data.data)
     })
   }, []);
   return (
-    <Navbar/>
+    <>
     
+    <Navbar/>
+    <div>
+    {data.map((data) => (
+            data.judul
+          ))}
+    </div>
+    </>
 
   )
 }

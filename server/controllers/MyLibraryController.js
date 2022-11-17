@@ -14,12 +14,13 @@ exports.createBook = AsyncHandler(async(req,res) => {
         penulis: req.body.penulis,
         terbit: req.body.terbit,
         pinjam: req.body.pinjam,
-        pengembalian: req.body.pengembalian,
-        stock : req.body.stock,
-        log: [MyLibraryLog(
-          req.body.stock,
-          'Penambahan data buku berhasil'
-        )]
+        pengembalian: req.body.pengembalian, 
+        sinopsis: req.body.sinopsis,
+        // stock : req.body.stock,
+        // log: [MyLibraryLog(
+        //   req.body.stock,
+        //   'Penambahan data buku berhasil'
+        // )]
     })
     
     mylibrary
@@ -63,7 +64,7 @@ exports.createBook = AsyncHandler(async(req,res) => {
 */
 
 exports.updateBook = AsyncHandler(async(req,res) => {
-    const {judul, penulis, terbit, pinjam, pengembalian} = req.body
+    const {judul, penulis, terbit, pinjam, pengembalian, sinopsis} = req.body
     const existBook = await Mylibrary.findOne({_id: req.params.id})
     if(existBook){
         existBook.judul = judul;
@@ -71,6 +72,7 @@ exports.updateBook = AsyncHandler(async(req,res) => {
         existBook.terbit = terbit;
         existBook.pinjam = pinjam;
         existBook.pengembalian = pengembalian;
+        existBook.sinopsis = sinopsis;
         const updatedBook = await existBook.save();
         res.status(200).json({
             success: true,

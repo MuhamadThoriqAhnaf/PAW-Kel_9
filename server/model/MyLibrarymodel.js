@@ -20,6 +20,10 @@ const MyLibrarySchema =  mongoose.Schema({
     pengembalian: {
         type: Date,
         required: true
+    },
+    sinopsis: {
+        type: String,
+        required: true,
     }
 })
 

@@ -1,12 +1,13 @@
 import React from 'react'
-import Logo from "../assets/Logo.svg"
 
 export default function Navbar() {
   return (
-    <div className='flex px-[10px] md:px-[140px] md:py-[16px] items-center justify-between bg-[#D9E5D6] h-[80px]'>
-        <img src={Logo} className="w-[150px]"></img>
-        <input placeholder='Cari Buku' className='border-2 h-[34px] w-[150px]' ></input>
-    
+    <div className='rounded-b-3xl flex px-[10px] md:px-[140px] md:py-[16px] items-center justify-between bg-[#D9E5D6] h-[80px]'>
+      <div class="flex">
+        <img src="logo-black.svg " class="h-10 flex-auto"></img>
+        <span class=" ml-2 mt-2 font-bold font-rubik text-xl flex-auto">MyLibrary</span>
+      </div>
+        <input placeholder='Cari Buku...' className='placeholder:italic placeholder:text-slate-400 block bg-white md:w-full w-200 border border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-black focus:ring-black focus:ring-1 sm:text-sm border-10 h-[34px] md:w-[300px]' ></input>
     </div>
   )
 }

@@ -11,8 +11,10 @@ export default function AdminPage() {
   const uploadImage = () => {
     if (imageUpload == null) return;
     const imageRef = ref(storage, `covers/${imageUpload.name}`);
-    uploadBytes(imageRef, imageUpload).then(() => {
-      alert("Cover uploaded!")
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageList((prev) => [...prev, url])
+      }) 
     });
   }
 

@@ -7,7 +7,7 @@ export default function Navbar() {
         <img src="logo-black.svg " class="h-10 flex-auto"></img>
         <span class="md:ml-2 md:mt-2 font-bold font-rubik text-xl flex-auto">MyLibrary</span>
       </div>
-        <input placeholder='  Cari Buku' className='border-10 h-[34px] md:w-[300px]' ></input>
+        <input placeholder='Cari Buku...' className='placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm border-10 h-[34px] md:w-[300px]' ></input>
     </div>
   )
 }

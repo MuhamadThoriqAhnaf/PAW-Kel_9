@@ -20,6 +20,9 @@ module.exports = {
       },
       colors: {
         'tosca': '#D9E5D6',
+        'green': '#0B3C49',
+        'purple': '#5E2BFF',
+        'pink': '#FF1053'
       },
     },
   },

@@ -2,9 +2,12 @@ import React from 'react'
 
 export default function Navbar() {
   return (
-    <div className='flex px-[10px] md:px-[140px] md:py-[16px] items-center justify-between bg-[#D9E5D6] h-[80px]'>
-        <img src="logo-black.svg" className="h-10"></img>
-        <input placeholder='Cari Buku' className='border-2 h-[34px] w-[150px]' ></input>
+    <div className='rounded-b-3xl flex px-[10px] md:px-[140px] md:py-[16px] items-center justify-between bg-[#D9E5D6] h-[80px]'>
+      <div class="flex">
+        <img src="logo-black.svg " class="h-10 flex-auto"></img>
+        <span class="md:ml-2 md:mt-2 font-bold font-rubik text-xl flex-auto">MyLibrary</span>
+      </div>
+        <input placeholder='  Cari Buku' className='border-10 h-[34px] md:w-[300px]' ></input>
     </div>
   )
 }

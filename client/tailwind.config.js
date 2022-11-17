@@ -10,6 +10,7 @@ module.exports = {
       },
       backgroundImage: {
         'login': "url('../public/assets/bg-login.svg')",
+        'login-phone': "url('../public/assets/bg-login-phone.svg')",
         'wave': "url('../public/assets/asset-wave.svg')",
         'book-purple': "url('../public/assets/asset-book-purple.svg')",
         'book-green': "url('../public/assets/asset-book-green.svg')",

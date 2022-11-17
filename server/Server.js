@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const cookieSession = require("cookie-session");
 const MylibraryRoute = require('./routers/mylibrary')
+
 // Config dotev
 require('dotenv').config({
     path: './config/config.env'
@@ -24,12 +25,10 @@ app.use(express.json())
 // const imageRoute = require('./routes/image-route');
 // Dev Logginf Middleware
 if (process.env.NODE_ENV === 'development') {
-    app.use(cors({
-        origin: process.env.CLIENT_URL
-    }))
+    app.use(cors())
     app.use(morgan('dev'))
 }
-
+app.use(cors())
 // Use Routes
 // app.use('/api', authRouter)
 // app.use('/api', userRouter)

@@ -14,7 +14,7 @@ export default function Login() {
         }
       );
 
-      //alert(`login berhasil xixixi. selamat datang ${data.username}`);
+      alert(`login berhasil xixixi. selamat datang ${data.username}`);
     } catch (e) {
       if (e.response) alert(e.response?.data?.message);
       else alert("something went wrong");

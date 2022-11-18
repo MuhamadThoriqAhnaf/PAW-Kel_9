@@ -14,34 +14,25 @@ export default function Booklist() {
       console.log(response.data.data);
     });
   }, []);
+
   return (
     <>
       <Navbar />
-      <div className="grid grid-cols-3 gap-x-12 px-10 py-4">
+      <section class="flex font-rubik px-8 mt-8 justify-start items-center">
+        <h1 class="text-2xl mr-4">Koleksi Buku</h1>
+      </section>
+      <hr class="mx-8 my-3 h-px bg-black border-0"></hr>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mx-8">
         {data.map((data) => {
           return (
-            <div className="border border-black w-full p-4">
-              <h1>tanya sonia lanjutannya</h1>
-              <h1>tanya sonia lanjutannya</h1>
-              <h1>tanya sonia lanjutannya</h1>
-              <h1>tanya sonia lanjutannya</h1>
-              <h1>tanya sonia lanjutannya</h1>
-              <h1>tanya sonia lanjutannya</h1>
-              <h1>tanya sonia lanjutannya</h1>
-              <h1>tanya sonia lanjutannya</h1>
-              <h1>tanya sonia lanjutannya</h1>
-              <h1>tanya sonia lanjutannya</h1>
-              <h1>tanya sonia lanjutannya</h1>
-              <h1>tanya sonia lanjutannya</h1>
-              <h1>tanya sonia lanjutannya</h1>
-              <h1>tanya sonia lanjutannya</h1>
-              <p>{data.judul}</p>
-              <p>{data.penulis}</p>
-              <p>{data.terbit}</p>
-              <div className="flex gap-4">
-                <button className="bg-purple-500 py-2 px-3">Perbarui</button>
-                <button className="bg-red-500 py-2 px-3">Hapus</button>
+            <div class="border border-black p-2 rounded">
+              <img src={data.url} class="h-112 w-50 rounded object-cover" />
+              <div class="font-rubik text-lg p-2">
+                <p class="font-medium">{data.judul}</p>
+                <p>{data.penulis}</p>
+                <p>{data.terbit}</p>
               </div>
+              <div class="flex items-center justify-between"></div>
             </div>
           );
         })}

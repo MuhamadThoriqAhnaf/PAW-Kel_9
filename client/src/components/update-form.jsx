@@ -1,19 +1,31 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { storage } from "../firebase";
-import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
-import axios from "axios";
+import React from 'react'
+import { useState, useEffect } from 'react';
+import { storage } from '../firebase';
+import {ref, uploadBytes, listAll, getDownloadURL} from 'firebase/storage';
+import { useParams } from "react-router-dom";
+import axios from 'axios';
 
-function AddForm() {
+export default function UpdateForm() {
   const [judul, setJudul] = useState('');
   const [penulis,setPenulis] = useState('');
   const [terbit,setTerbit] = useState('');
   const [sinopsis, setSinopsis] = useState('');
 
+  const { id } = useParams();
+
   const [imageUpload, setImageUpload] = useState(null);
   const [imageList, setImageList] = useState([]);
-  const [showTambah, setShowTambah] = React.useState(false);
+  const [showUpdate, setShowUpdate] = React.useState(false);
 
+  useEffect(() => {
+    axios.get(`http://localhost:5000/api/book/${id}`).then((res) => {
+      setJudul(res.data.judul);
+      setPenulis(res.data.penulis);
+      setTerbit(res.data.terbit);
+      setSinopsis(res.data.sinopsis);
+    });
+  }, []);
+  
   const data = {
     judul: judul,
     penulis: penulis,
@@ -26,37 +38,34 @@ function AddForm() {
     const imageRef = ref(storage, `covers/${imageUpload.name}`);
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
-        setImageList((prev) => [...prev, url]);
-      });
+        setImageList((prev) => [...prev, url])
+      }) 
     });
-  };
-
-  console.log(data);
-
-  function submitForm (e) {
-    e.preventDefault();
-    axios.post(`http://localhost:5000/api/book`, data)
   }
 
+  function Update(e) {
+    e.preventDefault();
+    axios.put(`http://localhost:5000/api/book/${id}`, data)
+  }
   return (
     <div>
       <button
-        className="bg-[#0B3C49] border border-black w text-white font-rubik font-medium px-4 py-1 rounded hover:bg-black transition-colors focus:bg-white focus:text-black"
+        className="bg-purple border border-black text-white font-rubik font-medium text-sm sm:text-md px-4 py-1 rounded hover:bg-black transition-colors focus:bg-white focus:text-black"
         type="button"
-        onClick={() => setShowTambah(true)}
+        onClick={() => setShowUpdate(true)}
       >
         {" "}
-        Tambah
+        Perbarui
       </button>
-      {showTambah ? (
+      {showUpdate ? (
         <>
           <div class="justify-center font-rubik items-center flex fixed inset-0 z-50">
             <div class="text-sm sm:text-xl bg-white w-100 p-8 sm:p-10 rounded-xl border border-black">
               <div class="flex items-center justify-between mb-2">
-                <p class="font-bold flex items-center">Tambah Buku</p>
+                <p class="font-bold flex items-center">Perbarui Buku</p>
                 <button
-                  class="font-thin text-xl px-2 border border-black rounded  hover:bg-black transition-colors"
-                  onClick={() => setShowTambah(false)}
+                  class="font-thin text-xl px-2 border border-black rounded"
+                  onClick={() => setShowUpdate(false)}
                 >
                   x
                 </button>
@@ -124,10 +133,10 @@ function AddForm() {
               </form>
               <div class="flex justify-center">
                 <button
-                  class="bg-green border border-black break-words text-white font-medium text-sm sm:text-xl px-4 py-1 rounded hover:bg-black transition-colors"
-                  onClick={() => submitForm + uploadImage + setShowTambah(false)}
+                  class="bg-purple border border-black break-words text-white font-medium text-sm sm:text-xl px-4 py-1 rounded hover:bg-black transition-colors"
+                  onClick={() => Update + uploadImage + setShowUpdate(false)}
                 >
-                  Tambah
+                  Perbarui
                 </button>
               </div>
             </div>
@@ -139,4 +148,3 @@ function AddForm() {
   );
 }
 
-export default AddForm;

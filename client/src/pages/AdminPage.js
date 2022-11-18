@@ -4,6 +4,7 @@ import { storage } from "../firebase";
 import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import Navbar from "../components/navbar";
 import AddForm from "../components/add-form";
+import UpdateForm from "../components/update-form";
 import useFetch from "../hooks/useFetch";
 import axios from "axios";
 
@@ -30,6 +31,10 @@ export default function AdminPage() {
     });
   }, []);
 
+  const onDelete = (id) => {
+    axios.delete(`http://localhost:5000/api/book/removebook/${id}`)
+  }
+
   return (
     <>
       <Navbar />
@@ -49,10 +54,8 @@ export default function AdminPage() {
                 <p>{data.terbit}</p>
               </div>
               <div class="flex items-center justify-between">
-                <button class="bg-purple border border-black text-white font-medium text-sm md:text-lg w-1/2 p-2 mr-1 rounded hover:bg-black transition-colors">
-                  Perbarui
-                </button>
-                <button class="bg-pink border border-black text-white font-medium text-sm md:text-lg w-1/2 p-2 rounded hover:bg-black transition-colors">
+                <UpdateForm/>
+                <button onClick={() => onDelete(data.id)} class="bg-pink border border-black text-white font-rubik font-medium text-sm sm:text-md px-4 py-1 rounded hover:bg-black transition-colors focus:bg-white focus:text-black">
                   Hapus
                 </button>
               </div>

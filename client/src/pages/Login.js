@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const test = async (e) => {
@@ -13,7 +14,7 @@ export default function Login() {
         }
       );
 
-      alert(`login berhasil xixixi. selamat datang ${data.username}`);
+      //alert(`login berhasil xixixi. selamat datang ${data.username}`);
     } catch (e) {
       if (e.response) alert(e.response?.data?.message);
       else alert("something went wrong");
@@ -51,14 +52,16 @@ export default function Login() {
             class="w-full p-2 rounded bg-[#D9E5D6] border border-black mb-6 sm:mb-8"
           ></input>
           <br></br>
-          <a href="/adminpage" class="flex items-center justify-center">
-            <button
-              type="submit"
-              class="bg-[#0B3C49] border border-black w-1/4 text-white font-medium py-2 rounded hover:bg-black transition-colors"
-            >
-              Masuk
-            </button>
-          </a>
+          <Link to="/adminPage">
+            <div class="flex items-center justify-center">
+              <button
+                type="submit"
+                class="bg-[#0B3C49] border border-black w-1/4 text-white font-medium py-2 rounded hover:bg-black transition-colors"
+              >
+                Masuk
+              </button>
+            </div>
+          </Link>
           <a href="/list" className="">
             Booklist
           </a>

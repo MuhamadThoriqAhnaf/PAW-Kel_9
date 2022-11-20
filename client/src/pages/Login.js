@@ -1,8 +1,10 @@
 import React from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const test = async (e) => {
     e.preventDefault();
     try {
@@ -13,8 +15,7 @@ export default function Login() {
           password: e.target[1].value,
         }
       );
-
-      alert(`login berhasil xixixi. selamat datang ${data.username}`);
+      navigate("/adminPage");
     } catch (e) {
       if (e.response) alert(e.response?.data?.message);
       else alert("something went wrong");
@@ -52,16 +53,14 @@ export default function Login() {
             class="w-full p-2 rounded bg-[#D9E5D6] border border-black mb-6 sm:mb-8"
           ></input>
           <br></br>
-          <Link to="/adminPage">
-            <div class="flex items-center justify-center">
-              <button
-                type="submit"
-                class="bg-[#0B3C49] border border-black w-1/4 text-white font-medium py-2 rounded hover:bg-black transition-colors"
-              >
-                Masuk
-              </button>
-            </div>
-          </Link>
+          <a href="/adminpage" class="flex items-center justify-center">
+            <button
+              type="submit"
+              class="bg-[#0B3C49] border border-black w-1/4 text-white font-medium py-2 rounded hover:bg-black transition-colors"
+            >
+              Masuk
+            </button>
+          </a>
           <a href="/list" className="">
             Booklist
           </a>

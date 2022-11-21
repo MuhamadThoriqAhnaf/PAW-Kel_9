@@ -10,11 +10,14 @@ exports.createBook = AsyncHandler(async (req, res) => {
     req.body.terbit &&
     // req.body.pinjam &&
     // req.body.pengembalian &&
-    req.body.sinopsis
+    req.body.sinopsis &&
+    req.body.imageurl
   ) {
     res.status(400).send({ message: "Content can't be empty!" });
     return;
   }
+
+  console.log(req.body.imageurl);
 
   const mylibrary = new Mylibrary({
     judul: req.body.judul,
@@ -23,6 +26,7 @@ exports.createBook = AsyncHandler(async (req, res) => {
     // pinjam: req.body.pinjam,
     // pengembalian: req.body.pengembalian,
     sinopsis: req.body.sinopsis,
+    imageurl: req.body.imageurl,
   });
 
   mylibrary

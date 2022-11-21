@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { storage } from "../firebase";
 import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import axios from "axios";
+// import { uploadImage } from "../utils/imagekit.js";
 
 function AddForm() {
   const [judul, setJudul] = useState("");
@@ -22,21 +23,30 @@ function AddForm() {
   };
 
   const uploadImage = () => {
-    if (imageUpload == null) return;
-    const imageRef = ref(storage, `covers/${imageUpload.name}`);
-    uploadBytes(imageRef, imageUpload).then((snapshot) => {
-      getDownloadURL(snapshot.ref).then((url) => {
-        setImageList((prev) => [...prev, url]);
+    return new Promise((resolve, reject) => {
+      if (imageUpload == null) return;
+      const imageRef = ref(storage, `covers/${imageUpload.name}`);
+      uploadBytes(imageRef, imageUpload).then((snapshot) => {
+        getDownloadURL(snapshot.ref).then((url) => {
+          setImageList((prev) => [...prev, url]);
+          resolve(url);
+        });
       });
     });
   };
 
   console.log(data);
 
-  function submitForm(e) {
+  async function submitForm(e) {
     e.preventDefault();
-    console.log("data sebelum post" + data);
+    const imageurl = await uploadImage();
+    console.log("imageurl", imageurl);
+
+    data.imageurl = imageurl;
+
+    console.log("data sebelum post", data);
     // axios.post(`http://localhost:5000/api/book`, data);
+
     axios
       .post("http://localhost:5000/api/book", data)
       .then(function (response) {

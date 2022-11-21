@@ -49,7 +49,10 @@ export default function AdminPage() {
         {data.map((data) => {
           return (
             <div class="border border-black p-2 rounded">
-              <img src={data.url} class="h-112 w-80 rounded object-cover" />
+              <img
+                src={data.imageurl}
+                class="aspect-[9/16] object-cover rounded object-cover"
+              />
               <div class="font-rubik text-lg p-2">
                 <p class="font-medium">{data.judul}</p>
                 <p>{data.penulis}</p>

@@ -25,6 +25,10 @@ const MyLibrarySchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  imageurl: {
+    type: String,
+    required: true,
+  },
 });
 
 const Mylibrary = mongoose.model("Mylibraries", MyLibrarySchema);

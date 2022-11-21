@@ -9,7 +9,7 @@ export default function Booklist() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/book/getbook").then((response) => {
+    axios.get("http://localhost:5000/api/book").then((response) => {
       setData(response.data.data);
       console.log(response.data.data);
     });
@@ -19,7 +19,9 @@ export default function Booklist() {
     <>
       <Navbar />
       <div className="md:my-[20px]">
-        <a href='/login'className='px-[10px] md:px-[140px] '>Login</a>
+        <a href="/login" className="px-[10px] md:px-[140px] ">
+          Login
+        </a>
       </div>
       <section class="flex font-rubik px-8 mt-8 justify-start items-center">
         <h1 class="text-2xl mr-4">Koleksi Buku</h1>
@@ -36,11 +38,9 @@ export default function Booklist() {
                 <p>{data.terbit}</p>
               </div>
               <div class="flex items-center justify-between"></div>
-              
             </div>
           );
         })}
-        
       </div>
     </>
   );

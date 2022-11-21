@@ -1,15 +1,15 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
-import { storage } from '../firebase';
-import {ref, uploadBytes, listAll, getDownloadURL} from 'firebase/storage';
+import React from "react";
+import { useState, useEffect } from "react";
+import { storage } from "../firebase";
+import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import { useParams } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 
-export default function UpdateForm() {
-  const [judul, setJudul] = useState('');
-  const [penulis,setPenulis] = useState('');
-  const [terbit,setTerbit] = useState('');
-  const [sinopsis, setSinopsis] = useState('');
+export default function UpdateForm({ data: initialData, setRefreshSignal }) {
+  const [judul, setJudul] = useState(initialData?.judul);
+  const [penulis, setPenulis] = useState(initialData?.penulis);
+  const [terbit, setTerbit] = useState(initialData?.terbit);
+  const [sinopsis, setSinopsis] = useState(initialData?.sinopsis);
 
   const { id } = useParams();
 
@@ -18,34 +18,38 @@ export default function UpdateForm() {
   const [showUpdate, setShowUpdate] = React.useState(false);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/book/${id}`).then((res) => {
-      setJudul(res.data.judul);
-      setPenulis(res.data.penulis);
-      setTerbit(res.data.terbit);
-      setSinopsis(res.data.sinopsis);
-    });
+    axios
+      .get(`http://localhost:5000/api/book/${initialData._id}`)
+      .then((res) => {
+        setJudul(res.data.judul);
+        setPenulis(res.data.penulis);
+        setTerbit(res.data.terbit);
+        setSinopsis(res.data.sinopsis);
+      });
   }, []);
-  
+
   const data = {
     judul: judul,
     penulis: penulis,
     terbit: terbit,
-    sinopsis: sinopsis
-  }
+    sinopsis: sinopsis,
+  };
 
   const uploadImage = () => {
     if (imageUpload == null) return;
     const imageRef = ref(storage, `covers/${imageUpload.name}`);
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
-        setImageList((prev) => [...prev, url])
-      }) 
+        setImageList((prev) => [...prev, url]);
+      });
     });
-  }
+  };
 
-  function Update(e) {
+  async function Update(e) {
     e.preventDefault();
-    axios.put(`http://localhost:5000/api/book/${id}`, data)
+    const data = await axios.put(`http://localhost:5000/api/book/${id}`, data);
+    console.log(data);
+    setRefreshSignal((s) => !s);
   }
   return (
     <div>
@@ -134,7 +138,7 @@ export default function UpdateForm() {
               <div class="flex justify-center">
                 <button
                   class="bg-purple border border-black break-words text-white font-medium text-sm sm:text-xl px-4 py-1 rounded hover:bg-black transition-colors"
-                  onClick={() => Update + uploadImage + setShowUpdate(false)}
+                  onClick={() => Update() + uploadImage + setShowUpdate(false)}
                 >
                   Perbarui
                 </button>
@@ -147,4 +151,3 @@ export default function UpdateForm() {
     </div>
   );
 }
-

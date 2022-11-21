@@ -11,6 +11,7 @@ import axios from "axios";
 export default function AdminPage() {
   const [imageList, setImageList] = useState([]);
   const imageListRef = ref(storage, "covers/");
+  const [refreshSignal, setRefreshSignal] = useState(false);
 
   useEffect(() => {
     listAll(imageListRef).then((response) => {
@@ -27,13 +28,13 @@ export default function AdminPage() {
   useEffect(() => {
     axios.get("http://localhost:5000/api/book/getbook").then((response) => {
       setData(response.data.data);
-      console.log(response.data.data);
+      console.log("data", response.data.data);
     });
-  }, []);
+  }, [refreshSignal]);
 
   const onDelete = (id) => {
-    axios.delete(`http://localhost:5000/api/book/removebook/${id}`)
-  }
+    axios.delete(`http://localhost:5000/api/book/removebook/${id}`);
+  };
 
   return (
     <>
@@ -54,8 +55,11 @@ export default function AdminPage() {
                 <p>{data.terbit}</p>
               </div>
               <div class="flex items-center justify-between">
-                <UpdateForm/>
-                <button onClick={() => onDelete(data.id)} class="bg-pink border border-black text-white font-rubik font-medium text-sm sm:text-md px-4 py-1 rounded hover:bg-black transition-colors focus:bg-white focus:text-black">
+                <UpdateForm data={data} setRefreshSignal={setRefreshSignal} />
+                <button
+                  onClick={() => onDelete(data.id)}
+                  class="bg-pink border border-black text-white font-rubik font-medium text-sm sm:text-md px-4 py-1 rounded hover:bg-black transition-colors focus:bg-white focus:text-black"
+                >
                   Hapus
                 </button>
               </div>

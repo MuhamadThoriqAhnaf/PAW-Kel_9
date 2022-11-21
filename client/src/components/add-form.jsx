@@ -5,10 +5,10 @@ import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import axios from "axios";
 
 function AddForm() {
-  const [judul, setJudul] = useState('');
-  const [penulis,setPenulis] = useState('');
-  const [terbit,setTerbit] = useState('');
-  const [sinopsis, setSinopsis] = useState('');
+  const [judul, setJudul] = useState("");
+  const [penulis, setPenulis] = useState("");
+  const [terbit, setTerbit] = useState("");
+  const [sinopsis, setSinopsis] = useState("");
 
   const [imageUpload, setImageUpload] = useState(null);
   const [imageList, setImageList] = useState([]);
@@ -18,8 +18,8 @@ function AddForm() {
     judul: judul,
     penulis: penulis,
     terbit: terbit,
-    sinopsis: sinopsis
-  }
+    sinopsis: sinopsis,
+  };
 
   const uploadImage = () => {
     if (imageUpload == null) return;
@@ -33,9 +33,19 @@ function AddForm() {
 
   console.log(data);
 
-  function submitForm (e) {
+  function submitForm(e) {
     e.preventDefault();
-    axios.post(`http://localhost:5000/api/book`, data)
+    console.log("data sebelum post" + data);
+    // axios.post(`http://localhost:5000/api/book`, data);
+    axios
+      .post("http://localhost:5000/api/book", data)
+      .then(function (response) {
+        console.log(response);
+        console.log("test axios response = " + response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   return (
@@ -62,7 +72,7 @@ function AddForm() {
                 </button>
               </div>
               <hr class="mb-4 h-px bg-black border-0"></hr>
-              <form class="mb-8 grid grid-flow-row gap-4">
+              <form class="mb-8 grid grid-flow-row gap-4" onSubmit={submitForm}>
                 <div>
                   <label for="judul">Judul</label>
                   <input
@@ -125,7 +135,10 @@ function AddForm() {
               <div class="flex justify-center">
                 <button
                   class="bg-green border border-black break-words text-white font-medium text-sm sm:text-xl px-4 py-1 rounded hover:bg-black transition-colors"
-                  onClick={() => submitForm + uploadImage + setShowTambah(false)}
+                  // onClick={() =>
+                  //   submitForm + uploadImage + setShowTambah(false)
+                  // }
+                  onClick={submitForm}
                 >
                   Tambah
                 </button>

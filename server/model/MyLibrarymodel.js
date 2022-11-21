@@ -13,14 +13,14 @@ const MyLibrarySchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  pinjam: {
-    type: Date,
-    required: true,
-  },
-  pengembalian: {
-    type: Date,
-    required: true,
-  },
+  // pinjam: {
+  //   type: Date,
+  //   required: true,
+  // },
+  // pengembalian: {
+  //   type: Date,
+  //   required: true,
+  // },
   sinopsis: {
     type: String,
     required: true,

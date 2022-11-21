@@ -11,22 +11,9 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
   const [terbit, setTerbit] = useState(initialData?.terbit);
   const [sinopsis, setSinopsis] = useState(initialData?.sinopsis);
 
-  const { id } = useParams();
-
   const [imageUpload, setImageUpload] = useState(null);
   const [imageList, setImageList] = useState([]);
   const [showUpdate, setShowUpdate] = React.useState(false);
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/api/book/${initialData._id}`)
-      .then((res) => {
-        setJudul(res.data.judul);
-        setPenulis(res.data.penulis);
-        setTerbit(res.data.terbit);
-        setSinopsis(res.data.sinopsis);
-      });
-  }, []);
 
   const data = {
     judul: judul,
@@ -47,8 +34,11 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
 
   async function Update(e) {
     e.preventDefault();
-    const data = await axios.put(`http://localhost:5000/api/book/${id}`, data);
-    console.log(data);
+    const res = await axios.put(
+      `http://localhost:5000/api/book/${initialData._id}`,
+      data
+    );
+    console.log(res);
     setRefreshSignal((s) => !s);
   }
   return (
@@ -138,7 +128,9 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
               <div class="flex justify-center">
                 <button
                   class="bg-purple border border-black break-words text-white font-medium text-sm sm:text-xl px-4 py-1 rounded hover:bg-black transition-colors"
-                  onClick={() => Update() + uploadImage + setShowUpdate(false)}
+                  onClick={(e) =>
+                    Update(e) + uploadImage + setShowUpdate(false)
+                  }
                 >
                   Perbarui
                 </button>

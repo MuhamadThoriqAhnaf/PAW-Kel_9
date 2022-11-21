@@ -26,14 +26,15 @@ export default function AdminPage() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/book/getbook").then((response) => {
+    axios.get("http://localhost:5000/api/book").then((response) => {
       setData(response.data.data);
       console.log("data", response.data.data);
     });
   }, [refreshSignal]);
 
-  const onDelete = (id) => {
-    axios.delete(`http://localhost:5000/api/book/removebook/${id}`);
+  const onDelete = async (id) => {
+    await axios.delete(`http://localhost:5000/api/book/${id}`);
+    setRefreshSignal((s) => !s);
   };
 
   return (
@@ -57,7 +58,7 @@ export default function AdminPage() {
               <div class="flex items-center justify-between">
                 <UpdateForm data={data} setRefreshSignal={setRefreshSignal} />
                 <button
-                  onClick={() => onDelete(data.id)}
+                  onClick={() => onDelete(data._id)}
                   class="bg-pink border border-black text-white font-rubik font-medium text-sm sm:text-md px-4 py-1 rounded hover:bg-black transition-colors focus:bg-white focus:text-black"
                 >
                   Hapus

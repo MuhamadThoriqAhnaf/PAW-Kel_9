@@ -1,19 +1,33 @@
 import React, { useState, useEffect } from "react";
+import { storage } from "../firebase";
+import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import Navbar from "../components/navbar";
 import useFetch from "../hooks/useFetch";
 import axios from "axios";
 
 export default function Booklist() {
-  // const { data, loading, error } = useFetch("http://localhost:5000/api/book");
-  // console.log(data)
+  const [imageList, setImageList] = useState([]);
+  const imageListRef = ref(storage, "covers/");
+  const [refreshSignal] = useState(false);
+
+  useEffect(() => {
+    listAll(imageListRef).then((response) => {
+      response.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          setImageList((prev) => [...prev, url]);
+        });
+      });
+    });
+  }, []);
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
     axios.get("http://localhost:5000/api/book").then((response) => {
       setData(response.data.data);
-      console.log(response.data.data);
+      console.log("data", response.data.data);
     });
-  }, []);
+  }, [refreshSignal]);
 
   return (
     <>
@@ -31,7 +45,10 @@ export default function Booklist() {
         {data.map((data) => {
           return (
             <div class="border border-black p-2 rounded">
-              <img src={data.url} class="h-112 w-50 rounded object-cover" />
+              <img
+                src={data.imageurl}
+                class="aspect-[9/16] object-cover rounded object-cover"
+              />
               <div class="font-rubik text-lg p-2">
                 <p class="font-medium">{data.judul}</p>
                 <p>{data.penulis}</p>

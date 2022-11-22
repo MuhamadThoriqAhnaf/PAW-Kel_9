@@ -48,8 +48,8 @@ exports.updateBook = AsyncHandler(async (req, res) => {
     existBook.judul = judul;
     existBook.penulis = penulis;
     existBook.terbit = terbit;
-    existBook.pinjam = pinjam;
-    existBook.pengembalian = pengembalian;
+    // existBook.pinjam = pinjam;
+    // existBook.pengembalian = pengembalian;
     existBook.sinopsis = sinopsis;
     const updatedBook = await existBook.save();
     res.status(200).json({

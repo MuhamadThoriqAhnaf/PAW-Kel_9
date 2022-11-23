@@ -48,8 +48,6 @@ exports.updateBook = AsyncHandler(async (req, res) => {
     existBook.judul = judul;
     existBook.penulis = penulis;
     existBook.terbit = terbit;
-    // existBook.pinjam = pinjam;
-    // existBook.pengembalian = pengembalian;
     existBook.sinopsis = sinopsis;
     const updatedBook = await existBook.save();
     res.status(200).json({
@@ -64,76 +62,6 @@ exports.updateBook = AsyncHandler(async (req, res) => {
       message: "Book is not found",
     });
   }
-  if (req.body.stock) {
-    Mylibrary.findById(id)
-      .then((data) => {
-        if (!data) {
-          res.status(404).send({
-            message: `Book with id ${id} not found`,
-          });
-        } else {
-          const stockIncrement = req.body.stock - parseInt(data.stock);
-          const newLog = [
-            stockIncrement,
-            "Stock has been changed manually",
-            new Date().toLocaleString(),
-          ];
-          const newTransLog = data.log;
-          newTransLog.push(newLog);
-          req.body.log = newTransLog;
-
-          Mylibrary.findByIdAndUpdate(
-            id,
-            { $set: req.body },
-            { useFindAndModify: false }
-          )
-            .then((data) => {
-              if (!data)
-                res.status(404).send({
-                  message: `Book with id ${id} not found`,
-                });
-              else {
-                // updating transaction log if "stock" was also updated
-                console.log(req.body);
-                res.send({ message: "Book was updated successfully" });
-              }
-            })
-            .catch((err) => {
-              res.status(500).send({
-                message: err.message || `Error updating book with id ${id}`,
-              });
-            });
-        }
-      })
-      .catch((err) => {
-        res.status(500).send({
-          message: err.message || `Error updating book with id ${id}`,
-        });
-      });
-  }
-  // Edit data buku
-  else
-    Medicine.findByIdAndUpdate(
-      id,
-      { $set: req.body },
-      { useFindAndModify: false }
-    )
-      .then((data) => {
-        if (!data)
-          res.status(404).send({
-            message: `book with id ${id} not found`,
-          });
-        else {
-          // updating transaction log if "stock" was also updated
-          console.log(req.body);
-          res.send({ message: "book was updated successfully" });
-        }
-      })
-      .catch((err) => {
-        res.status(500).send({
-          message: err.message || `Error updating book with id ${id}`,
-        });
-      });
 });
 
 exports.getSingleBook = AsyncHandler(async (req, res) => {

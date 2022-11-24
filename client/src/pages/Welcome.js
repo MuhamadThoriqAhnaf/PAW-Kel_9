@@ -56,7 +56,7 @@ export default function Booklist() {
       <Navbar />
       
       
-      <section class="flex font-rubik px-8 mt-8 justify-start items-center">
+      <section class="flex font-rubik px-20 mt-8 justify-start items-center">
         <div class="flex">
           <h1 class="text-2xl mr-4">Koleksi Buku</h1>
           <input
@@ -75,12 +75,12 @@ export default function Booklist() {
       <img src={ornamen2} alt='' className='absolute right-10 z-0 top-[110px] w-1/4 max-w-[100px]'></img>
 
 
-      <hr class="mx-8 my-3 h-px bg-black border-0 z-1"></hr>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 z-1 gap-4 mx-8" >
+      <hr class="mx-20 my-3 h-px bg-black border-0 z-1"></hr>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 z-1 gap-4 mx-20" >
         {dataFiltered.map((data) => {
           return (
                       
-            <div class="border border-black z-10 p-2 rounded "data-aos=" fade-up" data-aos-duration="1000" data-aos-delay="5000" >
+            <div class="bg-white border border-black z-10 p-2 rounded "data-aos=" fade-up" data-aos-duration="1000" data-aos-delay="5000" >
               
               <img
                 src={data.imageurl}

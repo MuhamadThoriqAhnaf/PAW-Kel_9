@@ -7,6 +7,7 @@ import AddForm from "../components/add-form";
 import UpdateForm from "../components/update-form";
 import useFetch from "../hooks/useFetch";
 import axios from "axios";
+import Navbar2 from "../components/navbar2";
 
 export default function AdminPage() {
   const [imageList, setImageList] = useState([]);
@@ -39,7 +40,7 @@ export default function AdminPage() {
 
   return (
     <>
-      <Navbar />
+      <Navbar2 />
       <section class="flex font-rubik px-8 mt-8 justify-start items-center">
         <h1 class="text-2xl mr-4">Koleksi Buku</h1>
         <AddForm

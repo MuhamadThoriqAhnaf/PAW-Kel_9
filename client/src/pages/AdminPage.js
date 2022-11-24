@@ -38,6 +38,14 @@ export default function AdminPage() {
     setRefreshSignal((s) => !s);
   };
 
+  function isPinjam (pinjam) {
+    if (pinjam != null) {
+      return true;
+    }
+    else
+      return false;
+  }
+
   return (
     <>
       <Navbar2 />
@@ -54,10 +62,17 @@ export default function AdminPage() {
         {data.map((data) => {
           return (
             <div class="border border-black p-2 rounded">
-              <img
-                src={data.imageurl}
-                class="aspect-[9/16] h-96 w-full object-cover rounded"
-              />
+              <div class="relative">
+                {isPinjam(data.pinjam) ? (
+                  <div class="absolute font-rubik text-sm bg-pink border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">Dipinjam</div>
+                ) : (
+                  <div class="absolute font-rubik text-sm bg-green border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">Tersedia</div>
+                )}
+                <img
+                  src={data.imageurl}
+                  class="aspect-[9/16] h-96 w-full object-cover rounded"
+                />
+              </div>
               <div class="font-rubik text-lg p-2">
                 <p class="font-medium">{data.judul}</p>
                 <p>{data.penulis}</p>

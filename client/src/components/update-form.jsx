@@ -4,7 +4,6 @@ import { storage } from "../firebase";
 import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import axios from "axios";
 import 'flowbite';
-import { refresh } from "aos";
 
 export default function UpdateForm({ data: initialData, setRefreshSignal }) {
   const [judul, setJudul] = useState(initialData?.judul);
@@ -56,7 +55,7 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
       return true;
     }
     else
-    return false;
+      return false;
   }
   
   return (
@@ -143,14 +142,14 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
                   <br></br>
                 </div>
                   <div class="items-center">
-                    
+
                     {isPinjam(data.pinjam) ? (<>
                     <input checked id="dipinjam" type="checkbox" class="peer w-6 h-6 rounded  focus:ring-purple text-purple"></input>
                     <label for="dipinjam" class="ml-2">Buku sedang dipinjam</label></>
                     ) : (<>
                       <input id="dipinjam" type="checkbox" class="peer w-6 h-6 rounded  focus:ring-purple text-purple"></input>
                       <label for="dipinjam" class="ml-2">Buku sedang dipinjam</label></>
-                    )};
+                    )}
                     
                     <div date-rangepicker class="flex items-center justify-between invisible peer-checked:visible mt-2">
                       <div class="relative">
@@ -158,8 +157,8 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
                             <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
                         </div>
                         <input
-                          name="pinjam"
                           type="text"
+                          id="pinjam"
                           class="text-sm rounded-md border-black focus:ring-purple block w-full pl-10 p-2.5"
                           placeholder="Tanggal pinjam"
                           value={pinjam}
@@ -172,8 +171,8 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
                             <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
                         </div> 
                         <input
-                          name="pengembalian"
                           type="text"
+                          id="pengembalian"
                           class="text-sm rounded-md border-black focus:ring-purple block w-full pl-10 p-2.5"
                           placeholder="Tanggal pengembalian"
                           value={pengembalian}

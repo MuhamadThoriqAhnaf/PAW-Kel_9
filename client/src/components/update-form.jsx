@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { storage } from "../firebase";
 import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function UpdateForm({ data: initialData, setRefreshSignal }) {
@@ -40,6 +39,10 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
     );
     console.log(res);
     setRefreshSignal((s) => !s);
+    
+    alert("Berhasil memperbarui buku!");
+    setShowUpdate(false).then(
+    window.location.reload(true));
   }
   return (
     <div>

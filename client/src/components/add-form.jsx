@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { storage } from "../firebase";
 import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import axios from "axios";
-// import { uploadImage } from "../utils/imagekit.js";
+import { useNavigate } from "react-router-dom";
 
 function AddForm() {
   const [judul, setJudul] = useState("");
@@ -14,6 +14,8 @@ function AddForm() {
   const [imageUpload, setImageUpload] = useState(null);
   const [imageList, setImageList] = useState([]);
   const [showTambah, setShowTambah] = React.useState(false);
+
+  const navigate = useNavigate();
 
   const data = {
     judul: judul,
@@ -35,8 +37,6 @@ function AddForm() {
     });
   };
 
-  console.log(data);
-
   async function submitForm(e) {
     e.preventDefault();
     const imageurl = await uploadImage();
@@ -45,18 +45,22 @@ function AddForm() {
     data.imageurl = imageurl;
 
     console.log("data sebelum post", data);
-    // axios.post(`http://localhost:5000/api/book`, data);
 
     axios
       .post("http://localhost:5000/api/book", data)
       .then(function (response) {
         console.log(response);
         console.log("test axios response = " + response);
+        
+        alert("Berhasil menambahkan buku!");
+
+        setShowTambah(false).then(
+        window.location.reload(false));
       })
       .catch(function (error) {
         console.log(error);
       });
-  }
+  } 
 
   return (
     <div>
@@ -145,9 +149,6 @@ function AddForm() {
               <div class="flex justify-center">
                 <button
                   class="bg-green border border-black break-words text-white font-medium text-sm sm:text-xl px-4 py-1 rounded hover:bg-black transition-colors"
-                  // onClick={() =>
-                  //   submitForm + uploadImage + setShowTambah(false)
-                  // }
                   onClick={submitForm}
                 >
                   Tambah
@@ -155,7 +156,7 @@ function AddForm() {
               </div>
             </div>
           </div>
-          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+          <div class="opacity-25 fixed inset-0 z-40 bg-black"></div>
         </>
       ) : null}
     </div>

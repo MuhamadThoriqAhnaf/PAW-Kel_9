@@ -71,8 +71,8 @@ export default function Booklist() {
       </section>
       <img src={ornamen} alt='' className='absolute z-0 -left-72 top-[1100px] w-1/4 max-w-[512px]'></img>
       <img src={ornamen} alt='' className='absolute z-0 top-[110px] w-1/2 max-w-[200px]'></img>
-      <img src={ornamen1} alt='' className='absolute -right-2 z-0 top-[110px] w-1/2 max-w-[100px]'></img>
-      <img src={ornamen2} alt='' className='absolute -right-2 z-0 top-[110px] w-1/4 max-w-[100px]'></img>
+      <img src={ornamen1} alt='' className='absolute right-12 z-0 top-[110px] w-1/2 max-w-[100px]'></img>
+      <img src={ornamen2} alt='' className='absolute right-10 z-0 top-[110px] w-1/4 max-w-[100px]'></img>
 
 
       <hr class="mx-8 my-3 h-px bg-black border-0 z-1"></hr>

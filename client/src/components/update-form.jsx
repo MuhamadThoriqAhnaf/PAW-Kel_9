@@ -3,13 +3,16 @@ import { useState, useEffect } from "react";
 import { storage } from "../firebase";
 import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import axios from "axios";
+import 'flowbite';
 
 export default function UpdateForm({ data: initialData, setRefreshSignal }) {
   const [judul, setJudul] = useState(initialData?.judul);
   const [penulis, setPenulis] = useState(initialData?.penulis);
   const [terbit, setTerbit] = useState(initialData?.terbit);
   const [sinopsis, setSinopsis] = useState(initialData?.sinopsis);
-
+  const [pinjam, setPinjam] = useState(initialData?.pinjam);
+  const [pengembalian, setPengembalian] = useState(initialData?.pengembalian);
+  
   const [imageUpload, setImageUpload] = useState(null);
   const [imageList, setImageList] = useState([]);
   const [showUpdate, setShowUpdate] = React.useState(false);
@@ -19,6 +22,8 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
     penulis: penulis,
     terbit: terbit,
     sinopsis: sinopsis,
+    pinjam: pinjam,
+    pengembalian: pengembalian,
   };
 
   const uploadImage = () => {
@@ -127,6 +132,41 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
                   ></textarea>
                   <br></br>
                 </div>
+                  <div class="items-center">
+
+                    <input id="dipinjam" type="checkbox" class="peer w-6 h-6 rounded  focus:ring-purple text-purple"></input>
+                    <label for="dipinjam" class="ml-2">Buku sedang dipinjam</label>
+                    
+                    <div date-rangepicker class="flex items-center justify-between invisible peer-checked:visible mt-2">
+                      <div class="relative">
+                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <input
+                          name="pinjam"
+                          type="text"
+                          class="text-sm rounded-md border-black focus:ring-purple block w-full pl-10 p-2.5"
+                          placeholder="Tanggal pinjam"
+                          value={pinjam}
+                          onChange={(e) => setPinjam(e.target.value)}
+                        ></input>
+                      </div>
+                      <span class="mx-4 text-gray-500">sampai</span>
+                      <div class="relative">
+                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                        </div> 
+                        <input
+                          name="pengembalian"
+                          type="text"
+                          class="text-sm rounded-md border-black focus:ring-purple block w-full pl-10 p-2.5"
+                          placeholder="Tanggal pengembalian"
+                          value={pengembalian}
+                          onChange={(e) => setPengembalian(e.target.value)}
+                        ></input>
+                    </div>
+                    </div>
+                  </div>
               </form>
               <div class="flex justify-center">
                 <button

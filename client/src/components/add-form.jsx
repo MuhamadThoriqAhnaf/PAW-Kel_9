@@ -5,7 +5,7 @@ import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function AddForm() {
+function AddForm({ refresh }) {
   const [judul, setJudul] = useState("");
   const [penulis, setPenulis] = useState("");
   const [terbit, setTerbit] = useState("");
@@ -51,16 +51,16 @@ function AddForm() {
       .then(function (response) {
         console.log(response);
         console.log("test axios response = " + response);
-        
+
         alert("Berhasil menambahkan buku!");
 
-        setShowTambah(false).then(
-        window.location.reload(false));
+        refresh();
+        setShowTambah(false).then(window.location.reload(false));
       })
       .catch(function (error) {
         console.log(error);
       });
-  } 
+  }
 
   return (
     <div>

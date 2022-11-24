@@ -42,7 +42,11 @@ export default function AdminPage() {
       <Navbar />
       <section class="flex font-rubik px-8 mt-8 justify-start items-center">
         <h1 class="text-2xl mr-4">Koleksi Buku</h1>
-        <AddForm />
+        <AddForm
+          refresh={() => {
+            setRefreshSignal((s) => !s);
+          }}
+        />
       </section>
       <hr class="mx-8 my-3 h-px bg-black border-0"></hr>
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mx-8">

@@ -4,6 +4,9 @@ import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import Navbar from "../components/navbar";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import ornamen from "../assets/ornamen.png"
+import ornamen1 from "../assets/Vector.png"
+import ornamen2 from "../assets/Frame.png"
 import useFetch from "../hooks/useFetch";
 import axios from "axios";
 
@@ -60,14 +63,20 @@ export default function Booklist() {
           ></input>
         </div>
       </section>
-      <hr class="mx-8 my-3 h-px bg-black border-0"></hr>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mx-8" >
+      <img src={ornamen} alt='' className='absolute z-0 -left-72 top-[1100px] w-1/4 max-w-[512px]'></img>
+      <img src={ornamen} alt='' className='absolute z-0 top-[110px] w-1/2 max-w-[200px]'></img>
+      <img src={ornamen1} alt='' className='absolute -right-2 z-0 top-[110px] w-1/2 max-w-[100px]'></img>
+      <img src={ornamen2} alt='' className='absolute -right-2 z-0 top-[110px] w-1/4 max-w-[100px]'></img>
+
+
+      <hr class="mx-8 my-3 h-px bg-black border-0 z-1"></hr>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 z-1 gap-4 mx-8" >
         {dataFiltered.map((data) => {
           return (
-            <div class="border border-black  p-2 rounded "data-aos=" fade-up" data-aos-duration="1000" data-aos-delay="5000" >
+            <div class="border border-black z-10 p-2 rounded "data-aos=" fade-up" data-aos-duration="1000" data-aos-delay="5000" >
               <img
                 src={data.imageurl}
-                class="aspect-[9/16] h-96 w-full object-cover rounded " 
+                class="aspect-[9/16] h-96 w-full object-cover rounded z-10 " 
               />
               <div class="font-rubik text-lg p-2">
                 <p class="font-medium">{data.judul}</p>

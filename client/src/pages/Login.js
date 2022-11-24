@@ -14,8 +14,12 @@ export default function Login() {
           username: e.target[0].value,
           password: e.target[1].value,
         }
-      );
-      navigate("/adminPage");
+      ).then(function(res){
+        console.log(res.data.accessToken);
+        localStorage.setItem("accessToken", res.data.accessToken);
+        navigate("/adminPage")
+      })
+
     } catch (e) {
       if (e.response) alert(e.response?.data?.message);
       else alert("something went wrong");

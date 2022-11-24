@@ -8,11 +8,20 @@ import UpdateForm from "../components/update-form";
 import useFetch from "../hooks/useFetch";
 import axios from "axios";
 import Navbar2 from "../components/navbar2";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminPage() {
   const [imageList, setImageList] = useState([]);
   const imageListRef = ref(storage, "covers/");
   const [refreshSignal, setRefreshSignal] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    var accessToken = localStorage.getItem("accessToken")
+    if(accessToken==null){
+      navigate("/login")
+    }
+  })
 
   useEffect(() => {
     listAll(imageListRef).then((response) => {

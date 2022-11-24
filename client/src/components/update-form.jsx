@@ -4,6 +4,7 @@ import { storage } from "../firebase";
 import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import axios from "axios";
 import 'flowbite';
+import { refresh } from "aos";
 
 export default function UpdateForm({ data: initialData, setRefreshSignal }) {
   const [judul, setJudul] = useState(initialData?.judul);
@@ -49,6 +50,15 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
     setShowUpdate(false).then(
     window.location.reload(true));
   }
+
+  function isPinjam (pinjam) {
+    if (pinjam != null) {
+      return true;
+    }
+    else
+    return false;
+  }
+  
   return (
     <div>
       <button
@@ -133,9 +143,14 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
                   <br></br>
                 </div>
                   <div class="items-center">
-
-                    <input id="dipinjam" type="checkbox" class="peer w-6 h-6 rounded  focus:ring-purple text-purple"></input>
-                    <label for="dipinjam" class="ml-2">Buku sedang dipinjam</label>
+                    
+                    {isPinjam(data.pinjam) ? (<>
+                    <input checked id="dipinjam" type="checkbox" class="peer w-6 h-6 rounded  focus:ring-purple text-purple"></input>
+                    <label for="dipinjam" class="ml-2">Buku sedang dipinjam</label></>
+                    ) : (<>
+                      <input id="dipinjam" type="checkbox" class="peer w-6 h-6 rounded  focus:ring-purple text-purple"></input>
+                      <label for="dipinjam" class="ml-2">Buku sedang dipinjam</label></>
+                    )};
                     
                     <div date-rangepicker class="flex items-center justify-between invisible peer-checked:visible mt-2">
                       <div class="relative">

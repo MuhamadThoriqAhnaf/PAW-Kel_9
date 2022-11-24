@@ -16,9 +16,6 @@ export default function Sinopsis({data, ShowSinopsis, setShowSinopsis, refresh})
   const navigate = useNavigate();
 
   const _data = {
-    judul: judul,
-    penulis: penulis,
-    terbit: terbit,
     sinopsis: sinopsis,
   };
 
@@ -39,7 +36,6 @@ export default function Sinopsis({data, ShowSinopsis, setShowSinopsis, refresh})
         console.log(error);
       });
   }
-
 
   return (
     <div>
@@ -93,11 +89,11 @@ export default function Sinopsis({data, ShowSinopsis, setShowSinopsis, refresh})
               </div>
             </div>
           </div>
-          <div class=" opacity-10 fixed inset-0 z-40 bg-black"></div>
+          <div class=" opacity-100 fixed inset-0 z-40 bg-black">
+          </div>
         </>
       ) : null}
     </div>
   );
-
 }
 

@@ -53,18 +53,25 @@ export default function Login() {
             class="w-full p-2 rounded bg-[#D9E5D6] border border-black mb-6 sm:mb-8"
           ></input>
           <br></br>
-          <a class="flex items-center justify-center">
-            <button
-              href="/adminpage"
-              type="submit"
-              class="bg-[#0B3C49] border border-black w-1/4 text-white font-medium py-2 rounded hover:bg-black transition-colors"
-            >
-              Masuk
-            </button>
-          </a>
-          <a href="/list" className="">
-            Booklist
-          </a>
+          <div class="flex items-center justify-between">
+            <a>
+              <button
+                href="/adminpage"
+                type="submit"
+                class="bg-[#0B3C49] border border-black text-white font-medium px-4 py-2 rounded hover:bg-black transition-colors"
+              >
+                Masuk
+              </button>
+            </a>
+            <a href="/">
+              <button
+                type="button"
+                class="border border-black text-black font-medium px-4 py-2 rounded hover:bg-pink hover:text-white transition-colors"
+              >
+                Kembali
+              </button>
+            </a>
+          </div>
         </div>
       </form>
     </main>

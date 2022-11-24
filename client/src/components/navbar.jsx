@@ -7,9 +7,9 @@ export default function Navbar() {
         <img src="logo-black.svg " class="h-10 flex-auto"></img>
         <span class=" ml-2 mt-2 font-bold font-rubik text-xl flex-auto">MyLibrary</span>
         </a>
-        <a href="/login" className="md:pr-20 text-xl text-black font-bold font-rubik transition-colors hover:text-blue-800 ">
-        Login
-        </a>          
+        <a href="/login">
+        <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-lg px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Login</button>
+        </a>
         </div>
 
   )

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { storage } from "../firebase";
 import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import Navbar from "../components/navbar";
+import Aos from "aos";
+import "aos/dist/aos.css";
 import useFetch from "../hooks/useFetch";
 import axios from "axios";
 
@@ -19,6 +21,9 @@ export default function Booklist() {
       });
     });
   }, []);
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+}, []);
 
   const [data, setData] = useState([]);
   const [dataFiltered, setDataFiltered] = useState([]);
@@ -56,13 +61,13 @@ export default function Booklist() {
         </div>
       </section>
       <hr class="mx-8 my-3 h-px bg-black border-0"></hr>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mx-8">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mx-8" >
         {dataFiltered.map((data) => {
           return (
-            <div class="border border-black  p-2 rounded">
+            <div class="border border-black  p-2 rounded "data-aos=" fade-up" data-aos-duration="1000" data-aos-delay="5000" >
               <img
                 src={data.imageurl}
-                class="aspect-[9/16] h-96 w-full object-cover rounded "
+                class="aspect-[9/16] h-96 w-full object-cover rounded " 
               />
               <div class="font-rubik text-lg p-2">
                 <p class="font-medium">{data.judul}</p>

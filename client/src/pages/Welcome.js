@@ -32,22 +32,27 @@ export default function Booklist() {
   return (
     <>
       <Navbar />
-      <div className="md:my-[20px]">
-        <a href="/login" className="px-[10px] md:px-[140px] ">
-          Login
-        </a>
-      </div>
+
+
       <section class="flex font-rubik px-8 mt-8 justify-start items-center">
+        <div class="flex">
+          
         <h1 class="text-2xl mr-4">Koleksi Buku</h1>
+         <input placeholder='Cari Buku...' className='placeholder:italic 
+        placeholder:text-slate-400 block bg-white md:w-full w-200 border
+         border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none
+          focus:border-black focus:ring-black focus:ring-1 sm:text-sm border-10 h-[34px] md:w-[300px]' 
+          ></input>
+        </div>
       </section>
       <hr class="mx-8 my-3 h-px bg-black border-0"></hr>
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mx-8">
         {data.map((data) => {
           return (
-            <div class="border border-black p-2 rounded">
+            <div class="border border-black flex flex-col p-2 rounded">
               <img
                 src={data.imageurl}
-                class="aspect-[9/16] object-cover rounded object-cover"
+                class="aspect-[9/16]  object-cover rounded object-cover"
               />
               <div class="font-rubik text-lg p-2">
                 <p class="font-medium">{data.judul}</p>

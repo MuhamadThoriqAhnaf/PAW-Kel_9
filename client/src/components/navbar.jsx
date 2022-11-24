@@ -7,10 +7,8 @@ export default function Navbar() {
         <img src="logo-black.svg " class="h-10 flex-auto"></img>
         <span class=" ml-2 mt-2 font-bold font-rubik text-xl flex-auto">MyLibrary</span>
         </a>
-      <div className="md:my-[20px]">
-        className="md:pr-20 text-xl text-black font-bold font-rubik transition-colors hover:text-blue-800 ">
+      <div className="md:my-[20px] md:pr-20 text-xl text-black font-bold font-rubik transition-colors hover:text-blue-800 ">
           Login
-        
       </div>
     </div>
   )

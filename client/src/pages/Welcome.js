@@ -9,12 +9,13 @@ import ornamen1 from "../assets/Vector.png"
 import ornamen2 from "../assets/Frame.png"
 import useFetch from "../hooks/useFetch";
 import axios from "axios";
+import Sinopsis from "../components/sinopsis";
 
 export default function Booklist() {
   const [imageList, setImageList] = useState([]);
   const imageListRef = ref(storage, "covers/");
-  const [refreshSignal] = useState(false);
-
+  const [refreshSignal, setRefreshSignal] = useState(false);
+  const [ShowSinopsis, setShowSinopsis] = React.useState(false);
   useEffect(() => {
     listAll(imageListRef).then((response) => {
       response.items.forEach((item) => {
@@ -46,10 +47,15 @@ export default function Booklist() {
     setDataFiltered(filterData);
   };
 
+  const onSinopsis = async (id) => {
+    await axios.delete(`http://localhost:5000/api/book/${id}`);
+    setRefreshSignal((s) => !s);
+  };
   return (
     <>
       <Navbar />
-
+      
+      
       <section class="flex font-rubik px-8 mt-8 justify-start items-center">
         <div class="flex">
           <h1 class="text-2xl mr-4">Koleksi Buku</h1>
@@ -73,7 +79,9 @@ export default function Booklist() {
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 z-1 gap-4 mx-8" >
         {dataFiltered.map((data) => {
           return (
+                      
             <div class="border border-black z-10 p-2 rounded "data-aos=" fade-up" data-aos-duration="1000" data-aos-delay="5000" >
+              
               <img
                 src={data.imageurl}
                 class="aspect-[9/16] h-96 w-full object-cover rounded z-10 " 
@@ -84,6 +92,13 @@ export default function Booklist() {
                 <p>{data.terbit}</p>
               </div>
               <div class="flex items-center justify-between"></div>
+              {ShowSinopsis && <Sinopsis data={data} setRefreshSignal={setRefreshSignal} ShowSinopsis={ShowSinopsis} setShowSinopsis={setShowSinopsis}/>}
+                <button
+                  onClick={() => setShowSinopsis(true)}
+                  class="bg-green border border-black text-white font-rubik font-medium text-sm sm:text-md px-4 py-1 rounded hover:bg-black transition-colors focus:bg-white focus:text-black"
+                >
+                Sinopsis
+              </button>
             </div>
           );
         })}

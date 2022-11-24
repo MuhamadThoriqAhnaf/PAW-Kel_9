@@ -69,8 +69,8 @@ export default function AdminPage() {
                   onClick={() => onDelete(data._id)}
                   class="bg-pink border border-black text-white font-rubik font-medium text-sm sm:text-md px-4 py-1 rounded hover:bg-black transition-colors focus:bg-white focus:text-black"
                 >
-                  Hapus
-                </button>
+                Hapus
+              </button>
               </div>
             </div>
           );

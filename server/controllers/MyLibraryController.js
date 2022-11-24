@@ -8,7 +8,7 @@ exports.createBook = AsyncHandler(async (req, res) => {
     !req.body.judul &&
     req.body.penulis &&
     req.body.terbit &&
-    // req.body.pinjam &&
+    req.body.pinjam &&
     // req.body.pengembalian &&
     req.body.sinopsis &&
     req.body.imageurl
@@ -23,7 +23,7 @@ exports.createBook = AsyncHandler(async (req, res) => {
     judul: req.body.judul,
     penulis: req.body.penulis,
     terbit: req.body.terbit,
-    // pinjam: req.body.pinjam,
+    pinjam: req.body.pinjam,
     // pengembalian: req.body.pengembalian,
     sinopsis: req.body.sinopsis,
     imageurl: req.body.imageurl,
@@ -48,6 +48,7 @@ exports.updateBook = AsyncHandler(async (req, res) => {
     existBook.judul = judul;
     existBook.penulis = penulis;
     existBook.terbit = terbit;
+    existBook.pinjam = pinjam;
     existBook.sinopsis = sinopsis;
     const updatedBook = await existBook.save();
     res.status(200).json({

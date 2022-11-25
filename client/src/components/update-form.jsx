@@ -123,6 +123,7 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
                     type="file"
                     id="file"
                     name="file"
+                    class="flex rounded-md border border-black bg-tosca text-sm w-full"
                     onChange={(e) => {
                       setImageUpload(e.target.files[0]);
                     }}

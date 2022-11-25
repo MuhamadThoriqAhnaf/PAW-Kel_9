@@ -47,11 +47,6 @@ export default function Booklist() {
     setDataFiltered(filterData);
   };
 
-  const onSinopsis = async (id) => {
-    await axios.delete(`http://localhost:5000/api/book/${id}`);
-    setRefreshSignal((s) => !s);
-  };
-
   function isPinjam (pinjam) {
     if (pinjam != null) {
       return true;
@@ -66,18 +61,16 @@ export default function Booklist() {
       <Navbar />
       
       
-      <section class="flex font-rubik px-20 mt-8 justify-start items-center">
-        <div class="flex">
-          <h1 class="text-2xl mr-4">Koleksi Buku</h1>
+      <section class="flex font-rubik px-20 mt-8 items-center">
+          <h1 class="flex text-2xl mr-4">Koleksi Buku</h1>
           <input
             placeholder="Cari Buku..."
-            className="placeholder:italic 
+            class="placeholder:italic 
         placeholder:text-slate-400 block bg-white md:w-full w-200 border
          border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none
           focus:border-black focus:ring-black focus:ring-1 sm:text-sm border-10 h-[34px] md:w-[300px]"
             onChange={handleChange}
           ></input>
-        </div>
       </section>
       <img src={ornamen} alt='' className='absolute z-0 -left-72 top-[1100px] w-1/4 max-w-[512px]'></img>
       <img src={ornamen} alt='' className='absolute z-0 top-[110px] w-1/2 max-w-[200px]'></img>
@@ -86,11 +79,11 @@ export default function Booklist() {
 
 
       <hr class="mx-20 my-3 h-px bg-black border-0 z-1"></hr>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 z-1 gap-4 mx-20" >
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 z-100 gap-4 mx-20" >
         {dataFiltered.map((data) => {
           return (
                       
-            <div class="bg-white border border-black z-10 p-2 rounded "data-aos=" fade-up" data-aos-duration="1000" data-aos-delay="5000" >
+            <div class="bg-white border border-black p-2 rounded "data-aos=" fade-up" data-aos-duration="1000" data-aos-delay="5000" >
               
               <div class="relative">
                 {isPinjam(data.pinjam) ? (
@@ -108,14 +101,9 @@ export default function Booklist() {
                 <p>{data.penulis}</p>
                 <p>{data.terbit}</p>
               </div>
-              <div class="flex items-center justify-between"></div>
-              {ShowSinopsis && <Sinopsis data={data} setRefreshSignal={setRefreshSignal} ShowSinopsis={ShowSinopsis} setShowSinopsis={setShowSinopsis}/>}
-                <button
-                  onClick={() => setShowSinopsis(true)}
-                  class="bg-green border border-black text-white font-rubik font-medium text-sm sm:text-md px-4 py-1 rounded hover:bg-black transition-colors focus:bg-white focus:text-black"
-                >
-                Sinopsis
-              </button>
+              <div class="flex items-center justify-between">
+                <Sinopsis data={data} setRefreshSignal={setRefreshSignal}/>
+              </div>
             </div>
           );
         })}

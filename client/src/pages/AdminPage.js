@@ -16,13 +16,13 @@ export default function AdminPage() {
   const imageListRef = ref(storage, "covers/");
   const [refreshSignal, setRefreshSignal] = useState(false);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
-    var accessToken = localStorage.getItem("accessToken")
-    if(accessToken==null){
-      navigate("/login")
+    var accessToken = localStorage.getItem("accessToken");
+    if (accessToken == null) {
+      navigate("/login");
     }
-  })
+  });
 
   useEffect(() => {
     listAll(imageListRef).then((response) => {
@@ -52,17 +52,15 @@ export default function AdminPage() {
     setDataFiltered(filterData);
   };
 
-  function isPinjam (pinjam) {
+  function isPinjam(pinjam) {
     if (pinjam != null) {
       return true;
-    }
-    else
-      return false;
+    } else return false;
   }
 
   return (
     <>
-      <Navbar />
+      <Navbar2 />
       <section class="flex font-rubik px-20 mt-8 justify-between items-center">
         <div class="flex">
           <h1 class="text-2xl mr-4">Koleksi Buku</h1>
@@ -73,14 +71,13 @@ export default function AdminPage() {
           />
         </div>
         <input
-            placeholder="Cari Buku..."
-            className="placeholder:italic 
+          placeholder="Cari Buku..."
+          className="placeholder:italic 
         placeholder:text-slate-400 block bg-white md:w-full w-200 border
          border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none
           focus:border-black focus:ring-black focus:ring-1 sm:text-sm border-10 h-[34px] md:w-[300px]"
-            onChange={handleChange}
-          ></input>
-        
+          onChange={handleChange}
+        ></input>
       </section>
       <hr class="mx-20 my-3 h-px bg-black border-0"></hr>
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mx-20">
@@ -89,9 +86,13 @@ export default function AdminPage() {
             <div class="border border-black p-2 rounded">
               <div class="relative">
                 {isPinjam(data.pinjam) ? (
-                  <div class="absolute font-rubik text-sm bg-pink border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">Dipinjam</div>
+                  <div class="absolute font-rubik text-sm bg-pink border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">
+                    Dipinjam
+                  </div>
                 ) : (
-                  <div class="absolute font-rubik text-sm bg-green border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">Tersedia</div>
+                  <div class="absolute font-rubik text-sm bg-green border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">
+                    Tersedia
+                  </div>
                 )}
                 <img
                   src={data.imageurl}
@@ -105,7 +106,7 @@ export default function AdminPage() {
               </div>
               <div class="flex items-center justify-between">
                 <UpdateForm data={data} setRefreshSignal={setRefreshSignal} />
-                <DeleteForm data={data} setRefreshSignal={setRefreshSignal}/>
+                <DeleteForm data={data} setRefreshSignal={setRefreshSignal} />
               </div>
             </div>
           );

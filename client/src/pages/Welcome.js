@@ -51,6 +51,16 @@ export default function Booklist() {
     await axios.delete(`http://localhost:5000/api/book/${id}`);
     setRefreshSignal((s) => !s);
   };
+
+  function isPinjam (pinjam) {
+    if (pinjam != null) {
+      return true;
+    }
+    else
+      return false;
+  }
+
+
   return (
     <>
       <Navbar />
@@ -82,10 +92,17 @@ export default function Booklist() {
                       
             <div class="bg-white border border-black z-10 p-2 rounded "data-aos=" fade-up" data-aos-duration="1000" data-aos-delay="5000" >
               
-              <img
-                src={data.imageurl}
-                class="aspect-[9/16] h-96 w-full object-cover rounded z-10 " 
-              />
+              <div class="relative">
+                {isPinjam(data.pinjam) ? (
+                  <div class="absolute font-rubik text-sm bg-pink border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">Dipinjam</div>
+                ) : (
+                  <div class="absolute font-rubik text-sm bg-green border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">Tersedia</div>
+                )}
+                <img
+                  src={data.imageurl}
+                  class="aspect-[7/10] object-cover w-full rounded"
+                />
+              </div>
               <div class="font-rubik text-lg p-2">
                 <p class="font-medium">{data.judul}</p>
                 <p>{data.penulis}</p>

@@ -8,6 +8,7 @@ import UpdateForm from "../components/update-form";
 import useFetch from "../hooks/useFetch";
 import axios from "axios";
 import Navbar2 from "../components/navbar2";
+import DeleteForm from "../components/delete-form";
 import { useNavigate } from "react-router-dom";
 
 export default function AdminPage() {
@@ -41,11 +42,6 @@ export default function AdminPage() {
       console.log("data", response.data.data);
     });
   }, [refreshSignal]);
-
-  const onDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/api/book/${id}`);
-    setRefreshSignal((s) => !s);
-  };
 
   function isPinjam (pinjam) {
     if (pinjam != null) {
@@ -89,12 +85,7 @@ export default function AdminPage() {
               </div>
               <div class="flex items-center justify-between">
                 <UpdateForm data={data} setRefreshSignal={setRefreshSignal} />
-                <button
-                  onClick={() => onDelete(data._id)}
-                  class="bg-pink border border-black text-white font-rubik font-medium text-sm sm:text-md px-4 py-1 rounded hover:bg-black transition-colors focus:bg-white focus:text-black"
-                >
-                Hapus
-              </button>
+                <DeleteForm data={data} setRefreshSignal={setRefreshSignal}/>
               </div>
             </div>
           );

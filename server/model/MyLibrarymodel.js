@@ -27,7 +27,7 @@ const MyLibrarySchema = mongoose.Schema({
   },
   imageurl: {
     type: String,
-    required: true,
+    required: false,
   },
 });
 

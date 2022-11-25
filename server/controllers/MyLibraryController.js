@@ -42,7 +42,7 @@ exports.createBook = AsyncHandler(async (req, res) => {
 });
 
 exports.updateBook = AsyncHandler(async (req, res) => {
-  const { judul, penulis, terbit, pinjam, pengembalian, sinopsis } = req.body;
+  const { judul, penulis, terbit, pinjam, pengembalian, sinopsis, imageurl} = req.body;
   const existBook = await Mylibrary.findOne({ _id: req.params.id });
   if (existBook) {
     existBook.judul = judul;
@@ -51,6 +51,7 @@ exports.updateBook = AsyncHandler(async (req, res) => {
     existBook.pinjam = pinjam;
     existBook.pengembalian = pengembalian;
     existBook.sinopsis = sinopsis;
+    existBook.imageurl = imageurl;
     const updatedBook = await existBook.save();
     res.status(200).json({
       success: true,

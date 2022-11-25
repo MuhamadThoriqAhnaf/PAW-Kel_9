@@ -28,21 +28,28 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
   };
 
   const uploadImage = () => {
-    if (imageUpload == null) return;
-    const imageRef = ref(storage, `covers/${imageUpload.name}`);
-    uploadBytes(imageRef, imageUpload).then((snapshot) => {
-      getDownloadURL(snapshot.ref).then((url) => {
-        setImageList((prev) => [...prev, url]);
+    return new Promise((resolve, reject) => {
+      if (imageUpload == null) return;
+      const imageRef = ref(storage, `covers/${imageUpload.name}`);
+      uploadBytes(imageRef, imageUpload).then((snapshot) => {
+        getDownloadURL(snapshot.ref).then((url) => {
+          setImageList((prev) => [...prev, url]);
+          resolve(url);
+        });
       });
     });
   };
 
   async function Update(e) {
     e.preventDefault();
-    const res = await axios.put(
+    const imageurl = await uploadImage();
+    data.imageurl = imageurl;
+
+    const res = axios.put(
       `http://localhost:5000/api/book/${initialData._id}`,
       data
     );
+
     console.log(res);
     setRefreshSignal((s) => !s);
     
@@ -188,8 +195,7 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
                 <button
                   class="bg-purple border border-black break-words text-white font-medium text-sm sm:text-xl px-4 py-1 rounded hover:bg-black transition-colors"
                   onClick={(e) =>
-                    Update(e) + uploadImage + setShowUpdate(false)
-                  }
+                    Update(e)}
                 >
                   Perbarui
                 </button>

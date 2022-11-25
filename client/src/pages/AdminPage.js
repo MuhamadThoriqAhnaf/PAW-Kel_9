@@ -16,7 +16,7 @@ export default function AdminPage() {
   const imageListRef = ref(storage, "covers/");
   const [refreshSignal, setRefreshSignal] = useState(false);
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     var accessToken = localStorage.getItem("accessToken")
     if(accessToken==null){
@@ -35,13 +35,22 @@ export default function AdminPage() {
   }, []);
 
   const [data, setData] = useState([]);
+  const [dataFiltered, setDataFiltered] = useState([]);
 
   useEffect(() => {
     axios.get("http://localhost:5000/api/book").then((response) => {
       setData(response.data.data);
+      setDataFiltered(response.data.data);
       console.log("data", response.data.data);
     });
   }, [refreshSignal]);
+
+  const handleChange = (e) => {
+    const filterData = data.filter((o) => {
+      return o.judul.toLowerCase().includes(e.target.value);
+    });
+    setDataFiltered(filterData);
+  };
 
   function isPinjam (pinjam) {
     if (pinjam != null) {
@@ -53,18 +62,29 @@ export default function AdminPage() {
 
   return (
     <>
-      <Navbar2 />
-      <section class="flex font-rubik px-20 mt-8 justify-start items-center">
-        <h1 class="text-2xl mr-4">Koleksi Buku</h1>
-        <AddForm
-          refresh={() => {
-            setRefreshSignal((s) => !s);
-          }}
-        />
+      <Navbar />
+      <section class="flex font-rubik px-20 mt-8 justify-between items-center">
+        <div class="flex">
+          <h1 class="text-2xl mr-4">Koleksi Buku</h1>
+          <AddForm
+            refresh={() => {
+              setRefreshSignal((s) => !s);
+            }}
+          />
+        </div>
+        <input
+            placeholder="Cari Buku..."
+            className="placeholder:italic 
+        placeholder:text-slate-400 block bg-white md:w-full w-200 border
+         border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none
+          focus:border-black focus:ring-black focus:ring-1 sm:text-sm border-10 h-[34px] md:w-[300px]"
+            onChange={handleChange}
+          ></input>
+        
       </section>
       <hr class="mx-20 my-3 h-px bg-black border-0"></hr>
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mx-20">
-        {data.map((data) => {
+        {dataFiltered.map((data) => {
           return (
             <div class="border border-black p-2 rounded">
               <div class="relative">

@@ -22,7 +22,7 @@ export default function Login() {
 
     } catch (e) {
       if (e.response) alert(e.response?.data?.message);
-      else alert("something went wrong");
+      else alert("Selamat datang admin");
     }
   };
 

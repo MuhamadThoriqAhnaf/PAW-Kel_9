@@ -10,6 +10,7 @@ import ornamen2 from "../assets/Frame.png"
 import useFetch from "../hooks/useFetch";
 import axios from "axios";
 import Sinopsis from "../components/sinopsis";
+import Landingpage from "../components/landingpage";
 
 export default function Booklist() {
   const [imageList, setImageList] = useState([]);
@@ -59,7 +60,7 @@ export default function Booklist() {
   return (
     <>
       <Navbar />
-      
+      <Landingpage/>
       
       <section class="flex font-rubik px-20 mt-8 items-center">
           <h1 class="flex text-2xl mr-4">Koleksi Buku</h1>
@@ -70,14 +71,17 @@ export default function Booklist() {
          border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none
           focus:border-black focus:ring-black focus:ring-1 sm:text-sm border-10 h-[34px] md:w-[300px]"
             onChange={handleChange}
+            
           ></input>
       </section>
+      {/* <section
+        className="h-full lg:h-[100vh] py-[100px] lg:py-0 bg-putih items-center flex-col flex justify-center mx"
+        name="how-it-works"
+      ></section> */}
       <img src={ornamen} alt='' className='absolute z-0 -left-72 top-[1100px] w-1/4 max-w-[512px]'></img>
       <img src={ornamen} alt='' className='absolute z-0 top-[110px] w-1/2 max-w-[200px]'></img>
       <img src={ornamen1} alt='' className='absolute right-12 z-0 top-[110px] w-1/2 max-w-[100px]'></img>
       <img src={ornamen2} alt='' className='absolute right-10 z-0 top-[110px] w-1/4 max-w-[100px]'></img>
-
-
       <hr class="mx-20 my-3 h-px bg-black border-0 z-1"></hr>
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 z-100 gap-4 mx-20" >
         {dataFiltered.map((data) => {

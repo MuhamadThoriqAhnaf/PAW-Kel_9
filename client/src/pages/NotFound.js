@@ -1,7 +1,6 @@
 import eror from '../assets/404.png';
 
 
-
 const NotFound = () => {
     return ( 
     <div class="flex items-center">

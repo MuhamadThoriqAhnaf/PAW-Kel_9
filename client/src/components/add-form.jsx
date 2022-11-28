@@ -5,7 +5,7 @@ import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function AddForm({ refresh }) {
+function AddForm(props, { refresh }) {
   const [judul, setJudul] = useState("");
   const [penulis, setPenulis] = useState("");
   const [terbit, setTerbit] = useState("");
@@ -63,7 +63,7 @@ function AddForm({ refresh }) {
   }
 
   return (
-    <div>
+    <div className={props.className}>
       <button
         className="bg-[#0B3C49] border border-black w text-white font-rubik font-medium px-4 py-1 rounded hover:bg-black transition-colors focus:bg-white focus:text-black"
         type="button"

@@ -62,7 +62,7 @@ export default function Booklist() {
       <Navbar />
       <Landingpage/>
       
-      <section class="flex font-rubik px-20 mt-8 items-center">
+      <section class="flex font-rubik px-20 mt-8 items-center" id="ListBuku">
           <h1 class="flex text-2xl mr-4">Koleksi Buku</h1>
           <input
             placeholder="Cari Buku..."

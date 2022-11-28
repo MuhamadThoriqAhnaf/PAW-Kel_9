@@ -1,5 +1,6 @@
 import React from "react";
-// import { Link } from "react-scroll";
+import { Link } from "react-scroll";
+
 
 export default function Landingpage() {
     
@@ -14,11 +15,11 @@ export default function Landingpage() {
             <p className="my-5 lg:leading-normal">
               MyLibrary membantu Anda untuk mencari buku yang nantinya akan anda pilih jika anda ingin meminjamnya
             </p>
-            {/* <Link to="ListBuku" smooth={true}>
-              <button className="py-3 mt-3 px-[50px] lg:px-[75px]">
+            <Link to="ListBuku" smooth={true}>
+              <button className="py-3 mt-3 px-[50px] lg:px-[75px] bg-blue-600 text-white rounded-xl">
                 Lihat List Buku
               </button>
-            </Link> */}
+            </Link>
           </div>
           <img
             data-aos="fade-left"

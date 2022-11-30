@@ -20,12 +20,16 @@ export default function Login() {
           localStorage.setItem("accessToken", res.data.accessToken);
           toast.success("Selamat Datang Admin");
           setTimeout(() => {
-            navigate("/adminPage");
+            window.location.href = "/adminPage";
+            //navigate("/adminPage");
           }, 2000);
         });
-    } catch (e) {
-      if (e.response) alert(e.response?.data?.message);
-      //toast.error("Error");
+    } catch (ex) {
+      if (ex.response) {
+        console.log("error: " + ex.response?.data?.message);
+        toast.error("error: " + ex.response?.data?.message);
+      }
+      //alert(ex.response?.data?.message);
       //else alert("Selamat datang admin");
     }
   };

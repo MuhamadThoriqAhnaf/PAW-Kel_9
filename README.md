@@ -28,47 +28,7 @@ MyLibrary merupakan Aplikasi Web yang memiliki fungsi untuk membantu librarian d
   npm install
   npm run dev
   ```
-## Directories
-    .
-                        
-    ├── config               
-    ├── controllers           
-    ├── middleware            
-    ├── model                
-    ├── routers                               
-    ├── Server.js                 
-    ├── package.json
-    └── README.md
-  
-### Explanation
-1. config
-  
-   Berisi tentang configuration aplikasi.
-  
-1. routers
 
-   Berisi router yang terkoneksi dengan controller.
-
-1. controllers
-
-   Berisi controller dan terkoneksi dengan service. Semua logic dari aplikasi harus berada pada controller.
-
-1. model
-
-   Berisi model dan schema
-
-1. middlewares
-
-   Berisi express middleware.
-   
-1. package.json
-
-   Berisi informasi, dependency, dan npm scripts dari aplikasi.
-
-1. Server.js
-
-   Berisi inisialisasi server untuk aplikasi.
- 
  ## Link
  ### Link before UTS
  link presentasi : [here](https://www.canva.com/design/DAFNfG4ZcrI/Yi0TU9aF1tc3zU_HRau2hA/view?utm_content=DAFNfG4ZcrI&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink

@@ -71,10 +71,11 @@ MyLibrary merupakan Aplikasi Web yang memiliki fungsi untuk membantu librarian d
  
  ## Link
  ### Link before UTS
- link presentasi : [here] (https://www.canva.com/design/DAFNfG4ZcrI/Yi0TU9aF1tc3zU_HRau2hA/view?utm_content=DAFNfG4ZcrI&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink
+ link presentasi : [here](https://www.canva.com/design/DAFNfG4ZcrI/Yi0TU9aF1tc3zU_HRau2hA/view?utm_content=DAFNfG4ZcrI&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink
 )
- link video : [here] (https://drive.google.com/file/d/1VYAE70NQj8QOFoVWsub8J6sst-l2HAd4/view?usp=sharing)
+
+ link video : [here](https://drive.google.com/file/d/1VYAE70NQj8QOFoVWsub8J6sst-l2HAd4/view?usp=sharing)
  
  ### Link after UTS
- Linl Presentasi : [here] (https://www.canva.com/design/DAFSQnjrpw8/t7jrgvgGN86NvTU_jpMOpQ/view?utm_content=DAFSQnjrpw8&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+ Link Presentasi : [here](https://www.canva.com/design/DAFSQnjrpw8/t7jrgvgGN86NvTU_jpMOpQ/view?utm_content=DAFSQnjrpw8&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
  

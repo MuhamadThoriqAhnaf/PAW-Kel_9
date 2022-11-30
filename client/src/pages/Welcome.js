@@ -4,13 +4,15 @@ import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import Navbar from "../components/navbar";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import ornamen from "../assets/ornamen.png"
-import ornamen1 from "../assets/Vector.png"
-import ornamen2 from "../assets/Frame.png"
+import ornamen from "../assets/ornamen.png";
+import ornamen1 from "../assets/Vector.png";
+import ornamen2 from "../assets/Frame.png";
 import useFetch from "../hooks/useFetch";
 import axios from "axios";
 import Sinopsis from "../components/sinopsis";
 import Landingpage from "../components/landingpage";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Booklist() {
   const [imageList, setImageList] = useState([]);
@@ -28,7 +30,7 @@ export default function Booklist() {
   }, []);
   useEffect(() => {
     Aos.init({ duration: 2000 });
-}, []);
+  }, []);
 
   const [data, setData] = useState([]);
   const [dataFiltered, setDataFiltered] = useState([]);
@@ -48,52 +50,71 @@ export default function Booklist() {
     setDataFiltered(filterData);
   };
 
-  function isPinjam (pinjam) {
+  function isPinjam(pinjam) {
     if (pinjam != null) {
       return true;
-    }
-    else
-      return false;
+    } else return false;
   }
-
 
   return (
     <>
       <Navbar />
-      <Landingpage/>
-      
+      <Landingpage />
+      <ToastContainer />
       <section class="flex font-rubik px-20 mt-8 items-center" id="ListBuku">
-          <h1 class="flex text-2xl mr-4">Koleksi Buku</h1>
-          <input
-            placeholder="Cari Buku..."
-            class="placeholder:italic 
+        <h1 class="flex text-2xl mr-4">Koleksi Buku</h1>
+        <input
+          placeholder="Cari Buku..."
+          class="placeholder:italic 
         placeholder:text-slate-400 block bg-white md:w-full w-200 border
          border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none
           focus:border-black focus:ring-black focus:ring-1 sm:text-sm border-10 h-[34px] md:w-[300px]"
-            onChange={handleChange}
-            
-          ></input>
+          onChange={handleChange}
+        ></input>
       </section>
       {/* <section
         className="h-full lg:h-[100vh] py-[100px] lg:py-0 bg-putih items-center flex-col flex justify-center mx"
         name="how-it-works"
       ></section> */}
-      <img src={ornamen} alt='' className='absolute z-0 -left-72 top-[1100px] w-1/4 max-w-[512px]'></img>
-      <img src={ornamen} alt='' className='absolute z-0 top-[110px] w-1/2 max-w-[200px]'></img>
-      <img src={ornamen1} alt='' className='absolute right-12 z-0 top-[110px] w-1/2 max-w-[100px]'></img>
-      <img src={ornamen2} alt='' className='absolute right-10 z-0 top-[110px] w-1/4 max-w-[100px]'></img>
+      <img
+        src={ornamen}
+        alt=""
+        className="absolute z-0 -left-72 top-[1100px] w-1/4 max-w-[512px]"
+      ></img>
+      <img
+        src={ornamen}
+        alt=""
+        className="absolute z-0 top-[110px] w-1/2 max-w-[200px]"
+      ></img>
+      <img
+        src={ornamen1}
+        alt=""
+        className="absolute right-12 z-0 top-[110px] w-1/2 max-w-[100px]"
+      ></img>
+      <img
+        src={ornamen2}
+        alt=""
+        className="absolute right-10 z-0 top-[110px] w-1/4 max-w-[100px]"
+      ></img>
       <hr class="mx-20 my-3 h-px bg-black border-0 z-1"></hr>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 z-100 gap-4 mx-20" >
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 z-100 gap-4 mx-20">
         {dataFiltered.map((data) => {
           return (
-                      
-            <div class="bg-white border border-black p-2 rounded "data-aos=" fade-up" data-aos-duration="1000" data-aos-delay="5000" >
-              
+            <div
+              class="bg-white border border-black p-2 rounded "
+              data-aos=" fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="5000"
+            >
               <div class="relative">
                 {isPinjam(data.pinjam) ? (
-                  <div class="absolute font-rubik text-sm bg-pink border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">Dipinjam</div>
+                  <div class="absolute font-rubik text-sm bg-pink border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">
+                    Dipinjam
+                  </div>
                 ) : (
-                  <div class="absolute font-rubik text-sm bg-green border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">Tersedia</div>
+                  <div class="absolute font-rubik text-sm bg-green border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">
+                    Tersedia
+                  </div>
                 )}
                 <img
                   src={data.imageurl}
@@ -106,7 +127,7 @@ export default function Booklist() {
                 <p>{data.terbit}</p>
               </div>
               <div class="flex items-center justify-between">
-                <Sinopsis data={data} setRefreshSignal={setRefreshSignal}/>
+                <Sinopsis data={data} setRefreshSignal={setRefreshSignal} />
               </div>
             </div>
           );

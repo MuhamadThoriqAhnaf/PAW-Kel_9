@@ -87,7 +87,7 @@ function AddForm({ refresh }) {
                 </button>
               </div>
               <hr class="mb-4 h-px bg-black border-0"></hr>
-              <form class="mb-8 grid grid-flow-row gap-4" onSubmit={submitForm}>
+              <form class="mb-8 grid grid-flow-row gap-4 w-[500px]" onSubmit={submitForm}>
                 <div>
                   <label for="judul">Judul</label>
                   <input
@@ -121,12 +121,14 @@ function AddForm({ refresh }) {
                   ></input>
                   <br></br>
                 </div>
+                
                 <div>
                   <label for="file">Gambar Sampul</label>
                   <input
                     type="file"
                     id="file"
                     name="file"
+                    class="flex rounded-md border border-black bg-tosca text-sm w-full"
                     onChange={(e) => {
                       setImageUpload(e.target.files[0]);
                     }}

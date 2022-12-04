@@ -49,7 +49,7 @@ export default function AdminPage() {
 
   const handleChange = (e) => {
     const filterData = data.filter((o) => {
-      return o.judul.toLowerCase().includes(e.target.value);
+      return o.judul.toLowerCase().includes(e.target.value.toLowerCase());
     });
     setDataFiltered(filterData);
   };
@@ -66,7 +66,7 @@ export default function AdminPage() {
       <ToastContainer />
       <section class="flex font-rubik px-20 mt-8 justify-between items-center">
         <div class="flex">
-          <h1 class="text-2xl mr-4">Koleksi Buku</h1>
+          <h1 class="text-lg mr-4">Koleksi Buku</h1>
           <AddForm
             refresh={() => {
               setRefreshSignal((s) => !s);
@@ -83,31 +83,31 @@ export default function AdminPage() {
         ></input>
       </section>
       <hr class="mx-20 my-3 h-px bg-black border-0"></hr>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mx-20">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mx-20">
         {dataFiltered.map((data) => {
           return (
             <div class="border border-black p-2 rounded">
               <div class="relative">
                 {isPinjam(data.pinjam) ? (
-                  <div class="absolute font-rubik text-sm bg-pink border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">
+                  <div class="absolute font-rubik text-xs bg-pink border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">
                     Dipinjam
                   </div>
                 ) : (
-                  <div class="absolute font-rubik text-sm bg-green border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">
+                  <div class="absolute font-rubik text-xs bg-green border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">
                     Tersedia
                   </div>
                 )}
                 <img
                   src={data.imageurl}
-                  class="aspect-[9/16] h-96 w-full object-cover rounded"
+                  class="aspect-[7/10] w-full object-cover rounded"
                 />
               </div>
-              <div class="font-rubik text-lg p-2">
+              <div class="font-rubik text-md p-2">
                 <p class="font-medium">{data.judul}</p>
                 <p>{data.penulis}</p>
                 <p>{data.terbit}</p>
               </div>
-              <div class="flex items-center justify-between">
+              <div class="flex items-end justify-between">
                 <UpdateForm data={data} setRefreshSignal={setRefreshSignal} />
                 <DeleteForm data={data} setRefreshSignal={setRefreshSignal} />
               </div>

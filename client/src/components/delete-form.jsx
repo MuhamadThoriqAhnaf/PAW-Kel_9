@@ -33,7 +33,7 @@ export default function DeleteForm({ data: initialData, setRefreshSignal }) {
   return (
     <div>
       <button
-        className="text-pink font-rubik font-medium text-sm sm:text-md px-4 py-1 rounded hover:bg-pink hover:text-white hover:border hover:border-black transition-colors focus:bg-white focus:text-black"
+        className="text-pink font-rubik font-medium text-sm sm:text-md md:px-4 px-0 py-1 rounded hover:bg-pink hover:text-white hover:border hover:border-black transition-colors focus:bg-white focus:text-black"
         type="button"
         onClick={() => setShowUpdate(true)}
       >

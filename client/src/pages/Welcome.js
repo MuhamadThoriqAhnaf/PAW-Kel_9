@@ -61,14 +61,14 @@ export default function Booklist() {
       <Navbar />
       <Landingpage />
       <ToastContainer />
-      <section class="flex font-rubik px-20 mt-8 items-center" id="ListBuku">
+      <section class="flex font-rubik md:px-20 px-5 mt-8 justify-between items-center" id="ListBuku">
         <h1 class="flex text-2xl mr-4">Koleksi Buku</h1>
         <input
           placeholder="Cari Buku..."
           class="placeholder:italic 
-        placeholder:text-slate-400 block bg-white md:w-full w-200 border
-         border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none
-          focus:border-black focus:ring-black focus:ring-1 sm:text-sm border-10 h-[34px] md:w-[300px]"
+          placeholder:text-slate-400 block bg-white md:w-full w-200 border
+           border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none
+            focus:border-black focus:ring-black focus:ring-1 sm:text-sm border-10 h-[34px] w-[120px] md:w-[300px]"
           onChange={handleChange}
         ></input>
       </section>
@@ -96,8 +96,23 @@ export default function Booklist() {
         alt=""
         className="absolute right-10 z-0 top-[110px] w-1/4 max-w-[100px]"
       ></img>
+            <img
+        src={ornamen1}
+        alt=""
+        className="absolute right-1 z-0 top-[1110px] w-1/2 max-w-[100px]"
+      ></img>
+            <img
+        src={ornamen2}
+        alt=""
+        className="absolute right-1 z-0 top-[1100px] w-1/4 max-w-[100px]"
+      ></img>
+        <img
+        src={ornamen1}
+        alt=""
+        className="absolute right-12 z-0 top-[1500px] w-1/2 max-w-[100px]"
+      ></img>
       <hr class="mx-20 my-3 h-px bg-black border-0 z-1"></hr>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 z-100 gap-4 mx-20">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:mx-20 mx-2">
         {dataFiltered.map((data) => {
           return (
             <div
@@ -106,7 +121,7 @@ export default function Booklist() {
               data-aos-duration="1000"
               data-aos-delay="5000"
             >
-              <div class="relative">
+              <div class="relative transform transition duration-300 scale-100 hover:scale-105">
                 {isPinjam(data.pinjam) ? (
                   <div class="absolute font-rubik text-sm bg-pink border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">
                     Dipinjam
@@ -118,7 +133,7 @@ export default function Booklist() {
                 )}
                 <img
                   src={data.imageurl}
-                  class="aspect-[7/10] object-cover w-full rounded"
+                  class="aspect-[7/10] object-cover w-full rounded "
                 />
               </div>
               <div class="font-rubik text-lg p-2">

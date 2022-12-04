@@ -68,7 +68,7 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
   return (
     <div>
       <button
-        className="bg-purple border border-black text-white font-rubik font-medium text-sm sm:text-md px-4 py-1 rounded hover:bg-black transition-colors focus:bg-white focus:text-black"
+        className="bg-purple border border-black text-white font-rubik font-medium text-sm  md:px-4 px-3 py-1 rounded hover:bg-black transition-colors focus:bg-white focus:text-black"
         type="button"
         onClick={() => setShowUpdate(true)}
       >

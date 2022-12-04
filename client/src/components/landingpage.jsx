@@ -21,7 +21,7 @@ export default function Landingpage() {
         <img
           data-aos="fade-left"
           src="Buku.png"
-          className="p-5 pt-0 md:p-0 xl:pt-30 xl:pb-10 xl:pr-0"
+          className="p-5 pt-0 md:p-0 xl:pt-30 xl:pb-0 xl:pr-0"
           alt=""
         ></img>
       </div>

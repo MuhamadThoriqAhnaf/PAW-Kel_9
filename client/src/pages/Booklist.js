@@ -42,7 +42,7 @@ export default function Booklist() {
             <div class="border border-black p-2 rounded">
               <img
                 src={data.imageurl}
-                class="aspect-[9/16] h-96 w-full object-cover rounded "
+                class="aspect-[9/16] h-96 w-full object-cover rounded"
               />
               <div class="font-rubik text-lg p-2">
                 <p class="font-medium">{data.judul}</p>

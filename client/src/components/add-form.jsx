@@ -1,11 +1,9 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { storage } from "../firebase";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 function AddForm(props, { refresh }) {
   const [judul, setJudul] = useState("");
@@ -54,7 +52,8 @@ function AddForm(props, { refresh }) {
         console.log(response);
         console.log("test axios response = " + response);
 
-        toast.success("Berhasil menambahkan buku!");
+        alert("Berhasil menambahkan buku!");
+
         refresh();
         setShowTambah(false).then(window.location.reload(false));
       })
@@ -87,7 +86,7 @@ function AddForm(props, { refresh }) {
                 </button>
               </div>
               <hr class="mb-4 h-px bg-black border-0"></hr>
-              <form class="mb-8 grid grid-flow-row gap-4 w-[500px]" onSubmit={submitForm}>
+              <form class="mb-8 grid grid-flow-row gap-4" onSubmit={submitForm}>
                 <div>
                   <label for="judul">Judul</label>
                   <input
@@ -121,14 +120,12 @@ function AddForm(props, { refresh }) {
                   ></input>
                   <br></br>
                 </div>
-                
                 <div>
                   <label for="file">Gambar Sampul</label>
                   <input
                     type="file"
                     id="file"
                     name="file"
-                    class="flex rounded-md border border-black bg-tosca text-sm w-full"
                     onChange={(e) => {
                       setImageUpload(e.target.files[0]);
                     }}

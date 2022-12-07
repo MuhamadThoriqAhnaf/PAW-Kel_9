@@ -1,10 +1,11 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { storage } from "../firebase";
-import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import axios from "axios";
-import 'flowbite';
-import { refresh } from "aos";
+import "flowbite";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function UpdateForm({ data: initialData, setRefreshSignal }) {
   const [judul, setJudul] = useState(initialData?.judul);
@@ -13,9 +14,8 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
   const [sinopsis, setSinopsis] = useState(initialData?.sinopsis);
   const [pinjam, setPinjam] = useState(initialData?.pinjam);
   const [pengembalian, setPengembalian] = useState(initialData?.pengembalian);
+  const [imageurl, setImageurl] = useState(initialData?.imageurl);
   
-  const [imageUpload, setImageUpload] = useState(null);
-  const [imageList, setImageList] = useState([]);
   const [showUpdate, setShowUpdate] = React.useState(false);
 
   const data = {
@@ -25,27 +25,26 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
     sinopsis: sinopsis,
     pinjam: pinjam,
     pengembalian: pengembalian,
+    imageurl: imageurl,
   };
 
-  const uploadImage = () => {
+  const uploadImage = (e) => {
     return new Promise((resolve, reject) => {
-      if (imageUpload == null) return;
-      const imageRef = ref(storage, `covers/${imageUpload.name}`);
-      uploadBytes(imageRef, imageUpload).then((snapshot) => {
-        getDownloadURL(snapshot.ref).then((url) => {
-          setImageList((prev) => [...prev, url]);
-          resolve(url);
-        });
-      });
+        if (e == null) return;
+        const imageRef = ref(storage, `covers/${e.name}`);
+        uploadBytes(imageRef, e).then((snapshot) => {
+          getDownloadURL(snapshot.ref).then((url) => {
+            setImageurl(url);
+            resolve(url);
+          });
+        })
     });
   };
-
+  
   async function Update(e) {
     e.preventDefault();
-    const imageurl = await uploadImage();
-    data.imageurl = imageurl;
-
-    const res = axios.put(
+    
+    const res = await axios.put(
       `http://localhost:5000/api/book/${initialData._id}`,
       data
     );
@@ -53,19 +52,17 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
     console.log(res);
     setRefreshSignal((s) => !s);
     
-    alert("Berhasil memperbarui buku!");
-    setShowUpdate(false).then(
-    window.location.reload(true));
+    toast.success("Berhasil memperbarui buku!");
+    setShowUpdate(false)
+    
   }
 
-  function isPinjam (pinjam) {
+  function isPinjam(pinjam) {
     if (pinjam != null) {
       return true;
-    }
-    else
-      return false;
+    } else return false;
   }
-  
+
   return (
     <div>
       <button
@@ -78,97 +75,137 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
       </button>
       {showUpdate ? (
         <>
-          <div class="justify-center font-rubik items-center flex fixed inset-0 z-50">
-            <div class="text-sm sm:text-xl bg-white w-100 p-8 sm:p-10 rounded-xl border border-black">
-              <div class="flex items-center justify-between mb-2">
-                <p class="font-bold flex items-center">Perbarui Buku</p>
-                <button
-                  class="font-thin text-xl px-2 border border-black rounded"
-                  onClick={() => setShowUpdate(false)}
-                >
-                  x
-                </button>
+          <div class="flex justify-center items-center font-rubik text-sm sm:text-md fixed inset-0 z-50">
+            <div class="bg-white w-100 p-4 sm:p-6 rounded-xl border border-black">
+              <div>
+                <div class="flex justify-between mb-2">
+                  <p class="font-bold flex items-center">Perbarui Buku</p>
+                  <button
+                      class="font-thin text-sm sm:text-md px-2 border border-black rounded"
+                      onClick={() => setShowUpdate(false)}
+                    >
+                      x
+                  </button>
+                </div>
               </div>
               <hr class="mb-4 h-px bg-black border-0"></hr>
-              <form class="mb-8 grid grid-flow-row gap-4">
-                <div>
-                  <label for="judul">Judul</label>
-                  <input
-                    value={judul}
-                    onChange={(e) => setJudul(e.target.value)}
-                    type="text"
-                    id="judul"
-                    class="w-full p-2 rounded bg-[#D9E5D6] border border-black"
-                  ></input>
-                  <br></br>
-                </div>
-                <div>
-                  <label for="penulis">Penulis</label>
-                  <input
-                    value={penulis}
-                    onChange={(e) => setPenulis(e.target.value)}
-                    type="text"
-                    id="penulis"
-                    class="w-full p-2 rounded bg-[#D9E5D6] border border-black"
-                  ></input>
-                  <br></br>
-                </div>
-                <div>
-                  <label for="terbit">Terbit</label>
-                  <input
-                    value={terbit}
-                    onChange={(e) => setTerbit(e.target.value)}
-                    type="text"
-                    id="terbit"
-                    class="w-full p-2 rounded bg-[#D9E5D6] border border-black"
-                  ></input>
-                  <br></br>
-                </div>
-                <div>
-                  <label for="file">Gambar Sampul</label>
-                  <input
-                    type="file"
-                    id="file"
-                    name="file"
-                    class="flex rounded-md border border-black bg-tosca text-sm w-full"
-                    onChange={(e) => {
-                      setImageUpload(e.target.files[0]);
-                    }}
-                  ></input>
-                </div>
-                <div>
-                  <label for="deskripsi" class="">
-                    Deskripsi
-                  </label>
-                  <textarea
-                    value={sinopsis}
-                    onChange={(e) => setSinopsis(e.target.value)}
-                    type="text"
-                    id="deskripsi"
-                    rows="4"
-                    class="w-full p-2 rounded bg-[#D9E5D6] border border-black"
-                  ></textarea>
-                  <br></br>
-                </div>
-                  <div class="items-center">
 
-                    {isPinjam(data.pinjam) ? (<>
-                    <input checked id="dipinjam" type="checkbox" class="peer w-6 h-6 rounded  focus:ring-purple text-purple" onClick={() => setPinjam(null) + setPengembalian(null)}></input>
-                    <label for="dipinjam" class="ml-2">Buku sedang dipinjam</label></>
-                    ) : (<>
-                      <input id="dipinjam" type="checkbox" class="peer w-6 h-6 rounded  focus:ring-purple text-purple"></input>
-                      <label for="dipinjam" class="ml-2">Buku sedang dipinjam</label></>
+              <div class="flex justify-between gap-8">
+                <div>
+                    <label for="file">Gambar Sampul</label>
+                    <div>
+                      <img src={imageurl} class="w-[241px] aspect-[7/10] rounded border border-black object-cover"></img>
+                      <input 
+                        type="file"
+                        id="file"
+                        name="file"
+                        accept="image/png, image/jpg, image/jpeg" 
+                        class="flex rounded-md pr-2 border border-black bg-tosca text-xs mt-4 w-[241px]"
+                        onChange={(e) => {
+                          uploadImage(e.target.files[0])
+                        }}
+                        onClick={(e) => {e.target.value = "";}}
+                      ></input>
+                    </div>
+                </div>
+
+                <form class="grid grid-flow-row gap-2">
+                  <div>
+                    <label for="judul">Judul</label>
+                    <input
+                      value={judul}
+                      onChange={(e) => setJudul(e.target.value)}
+                      type="text"
+                      id="judul"
+                      class="text-sm sm:text-md w-full p-2 rounded bg-[#D9E5D6] border border-black"
+                    ></input>
+                    <br></br>
+                  </div>
+                  <div>
+                    <label for="penulis">Penulis</label>
+                    <input
+                      value={penulis}
+                      onChange={(e) => setPenulis(e.target.value)}
+                      type="text"
+                      id="penulis"
+                      class="text-sm sm:text-md w-full p-2 rounded bg-[#D9E5D6] border border-black"
+                    ></input>
+                    <br></br>
+                  </div>
+                  <div>
+                    <label for="terbit">Terbit</label>
+                    <input
+                      value={terbit}
+                      onChange={(e) => setTerbit(e.target.value)}
+                      type="text"
+                      id="terbit"
+                      class="text-sm sm:text-md w-full p-2 rounded bg-[#D9E5D6] border border-black"
+                    ></input>
+                    <br></br>
+                  </div>
+                  <div>
+                    <label for="deskripsi">Deskripsi</label>
+                    <textarea
+                      value={sinopsis}
+                      onChange={(e) => setSinopsis(e.target.value)}
+                      type="text"
+                      id="deskripsi"
+                      rows="5"
+                      class="text-sm sm:text-md w-full p-2 rounded bg-[#D9E5D6] border border-black"
+                    ></textarea>
+                    <br></br>
+                  </div>
+                  <div class="items-center">
+                    {isPinjam(data.pinjam) ? (
+                      <>
+                        <input
+                          checked
+                          id="dipinjam"
+                          type="checkbox"
+                          class="text-sm sm:text-md peer w-6 h-6 rounded  focus:ring-purple text-purple"
+                          onClick={() => setPinjam(null) + setPengembalian(null)}
+                        ></input>
+                        <label for="dipinjam" class="ml-2">
+                          Buku sedang dipinjam
+                        </label>
+                      </>
+                    ) : (
+                      <>
+                        <input
+                          id="dipinjam"
+                          type="checkbox"
+                          class="text-sm sm:text-md peer w-6 h-6 rounded  focus:ring-purple text-purple"
+                        ></input>
+                        <label for="dipinjam" class="ml-2">
+                          Buku sedang dipinjam
+                        </label>
+                      </>
                     )}
-                    
-                    <div date-rangepicker class="flex items-center justify-between invisible peer-checked:visible mt-2">
+
+                    <div
+                      date-rangepicker
+                      class="mb-4 text-sm sm:text-md flex items-center justify-between invisible peer-checked:visible mt-2"
+                    >
                       <div class="relative">
                         <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                          <svg
+                            aria-hidden="true"
+                            class="w-5 h-5 text-gray-500"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                              clip-rule="evenodd"
+                            ></path>
+                          </svg>
                         </div>
                         <input
                           type="text"
                           id="pinjam"
-                          class="text-sm rounded-md border-black focus:ring-purple block w-full pl-10 p-2.5"
+                          class="text-sm sm:text-md rounded-md border-black focus:ring-purple block w-full pl-10 p-2"
                           placeholder="Tanggal pinjam"
                           value={pinjam}
                           onChange={(e) => setPinjam(e.target.value)}
@@ -177,29 +214,42 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
                       <span class="mx-4 text-gray-500">sampai</span>
                       <div class="relative">
                         <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-                        </div> 
+                          <svg
+                            aria-hidden="true"
+                            class="w-5 h-5 text-gray-500"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                              clip-rule="evenodd"
+                            ></path>
+                          </svg>
+                        </div>
                         <input
                           type="text"
                           id="pengembalian"
-                          class="text-sm rounded-md border-black focus:ring-purple block w-full pl-10 p-2.5"
+                          class="text-sm sm:text-md rounded-md border-black focus:ring-purple block w-full pl-10 p-2"
                           placeholder="Tanggal pengembalian"
                           value={pengembalian}
                           onChange={(e) => setPengembalian(e.target.value)}
                         ></input>
-                    </div>
+                      </div>
                     </div>
                   </div>
-              </form>
-              <div class="flex justify-center">
-                <button
-                  class="bg-purple border border-black break-words text-white font-medium text-sm sm:text-xl px-4 py-1 rounded hover:bg-black transition-colors"
-                  onClick={(e) =>
-                    Update(e)}
-                >
-                  Perbarui
-                </button>
+                </form>
               </div>
+
+              <div class="flex justify-end">
+                  <button
+                    class="bg-purple border border-black break-words text-white font-medium text-sm sm:text-md px-4 py-1 rounded hover:bg-black transition-colors"
+                    onClick={(e) => Update(e)}
+                  >
+                    Perbarui
+                  </button>
+                </div>
             </div>
           </div>
           <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>

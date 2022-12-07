@@ -1,3 +1,15 @@
+<h1 align="center">
+  MyLibrary
+</h1>
+<p align="center">Kelompok 9</p><br>
+<p align="center">
+  MyLibrary merupakan Aplikasi Web yang memiliki fungsi untuk melakukan pembukuan terhadap Novel/Buku
+</p>
+
+## UI/UX Designer
+Link figma : [here](https://www.figma.com/file/RNrcWWEmXkze2KrtHuvP64/PAW?node-id=0%3A1&t=v1itDSRF9INIqVg0-1)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

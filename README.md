@@ -1,14 +1,13 @@
 <h1 align="center">
   MyLibrary
 </h1>
-
+<p align="center">Kelompok 9</p><br>
 <p align="center">
   MyLibrary merupakan Aplikasi Web yang memiliki fungsi untuk melakukan pembukuan terhadap Novel/Buku
 </p>
 
-<p align="center">Kelompok 9</p><br>
 
-### Anggota Kelompok
+## Anggota Kelompok
 |No   |   Nama     |   NIM     |
 |----|------------|-----------|
 |1. | Muhammad Farras Ilhami     | 20/456843/TK/50667 |
@@ -17,8 +16,11 @@
 |4. | Muhamad Thoriq Ahnaf       | 20/460553/TK/51142 |
 |5. | Agnes Suarna               | 20/463589/TK/51581 | 
 
+## Description 
+MyLibrary merupakan Aplikasi Web yang memiliki fungsi untuk membantu librarian dalam mengelola  Novel/Buku yang ada di perpustakaan, dimana nantinya user dapat melihat buku yang dapat dipinjam dan pustakawan dapat melakukan pendataan terhadap buku mulai dari create untuk membuat data buku, melakukan pendataan buku yang dipinjam, hingga pada bagian delete menghapus data buku tadi.
 
-### How to use
+
+## How to use
 - [Download](https://nodejs.org/en/download/) and install **Node.js** version `16.15` or higher.
 - Clone this project on your computer.
 - Don't forget to fill the .env files with 
@@ -26,43 +28,14 @@
   npm install
   npm run dev
   ```
-### Directories
-    .
-                        
-    ├── config               
-    ├── controllers           
-    ├── middleware            
-    ├── model                
-    ├── routers                               
-    ├── Server.js                 
-    ├── package.json
-    └── README.md
-  
-### Explanation
-1. config
-  
-   Berisi tentang configuration aplikasi.
-  
-1. routers
 
-   Berisi router yang terkoneksi dengan controller.
+ ## Link
+ ### Link before UTS
+ link presentasi : [here](https://www.canva.com/design/DAFNfG4ZcrI/Yi0TU9aF1tc3zU_HRau2hA/view?utm_content=DAFNfG4ZcrI&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink
+)
 
-1. controllers
-
-   Berisi controller dan terkoneksi dengan service. Semua logic dari aplikasi harus berada pada controller.
-
-1. model
-
-   Berisi model dan schema
-
-1. middlewares
-
-   Berisi express middleware.
-   
-1. package.json
-
-   Berisi informasi, dependency, dan npm scripts dari aplikasi.
-
-1. Server.js
-
-   Berisi inisialisasi server untuk aplikasi.
+ link video : [here](https://drive.google.com/file/d/1VYAE70NQj8QOFoVWsub8J6sst-l2HAd4/view?usp=sharing)
+ 
+ ### Link after UTS
+ Link Presentasi : [here](https://www.canva.com/design/DAFSQnjrpw8/t7jrgvgGN86NvTU_jpMOpQ/view?utm_content=DAFSQnjrpw8&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+ 

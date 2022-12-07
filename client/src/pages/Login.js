@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -8,26 +10,33 @@ export default function Login() {
   const test = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(
-        "http://localhost:5000/api/auth/signin",
-        {
+      const { data } = await axios
+        .post("http://localhost:5000/api/auth/signin", {
           username: e.target[0].value,
           password: e.target[1].value,
-        }
-      ).then(function(res){
-        console.log(res.data.accessToken);
-        localStorage.setItem("accessToken", res.data.accessToken);
-        navigate("/adminPage")
-      })
-
-    } catch (e) {
-      if (e.response) alert(e.response?.data?.message);
-      else alert("Selamat datang admin");
+        })
+        .then(function (res) {
+          console.log(res.data.accessToken);
+          localStorage.setItem("accessToken", res.data.accessToken);
+          toast.success("Selamat Datang Admin");
+          setTimeout(() => {
+            window.location.href = "/adminPage";
+            //navigate("/adminPage");
+          }, 2000);
+        });
+    } catch (ex) {
+      if (ex.response) {
+        console.log("error: " + ex.response?.data?.message);
+        toast.error("error: " + ex.response?.data?.message);
+      }
+      //alert(ex.response?.data?.message);
+      //else alert("Selamat datang admin");
     }
   };
 
   return (
     <main class="bg-login-phone sm:bg-login bg-cover bg-center font-rubik flex items-center justify-center h-screen">
+      <ToastContainer />
       <form onSubmit={test}>
         <div class="flex items-center justify-center mb-4">
           <img src="logo-black.svg" class="h-10 fill-black"></img>

@@ -68,27 +68,28 @@ export default function AdminPage() {
         <div class="flex">
           <h1 class="text-lg mr-4">Koleksi Buku</h1>
           <AddForm
-              refresh={() => {
-                setRefreshSignal((s) => !s);
-              }}/>
+            refresh={() => {
+              setRefreshSignal((s) => !s);
+            }}
+          />
         </div>
         <div className="flex justify-between">
-            <input
+          <input
             placeholder="Cari Buku..."
             className="placeholder:italic 
           placeholder:text-slate-400 block bg-white md:w-full w-200 border
           border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none
           focus:border-black focus:ring-black focus:ring-1 sm:text-sm border-10 h-[34px] w-[120px] md:w-[300px]"
-          onChange={handleChange}
+            onChange={handleChange}
           ></input>
         </div>
       </section>
       <hr class="mx-10 md:mx-20 my-3 h-px bg-black border-0"></hr>
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:mx-20 mx-2 ">
-      {dataFiltered.map((data) => {
-        return (
+        {dataFiltered.map((data) => {
+          return (
             <div class="border border-black p-2 rounded">
-            <div class="relative transform transition duration-300 scale-100 hover:scale-105">
+              <div class="relative transform transition duration-300 scale-100 hover:scale-105">
                 {isPinjam(data.pinjam) ? (
                   <div class="absolute font-rubik text-xs bg-pink border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">
                     Dipinjam
@@ -100,7 +101,7 @@ export default function AdminPage() {
                 )}
                 <img
                   src={data.imageurl}
-                  class="aspect-[7/16] w-full object-cover rounded"
+                  class="aspect-[7/10] w-full object-cover rounded"
                 />
               </div>
               <div class="font-rubik text-md p-2">

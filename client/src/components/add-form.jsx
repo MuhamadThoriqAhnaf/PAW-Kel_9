@@ -1,9 +1,11 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, } from "react";
 import { storage } from "../firebase";
-import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AddForm(props, { refresh }) {
   const [judul, setJudul] = useState("");
@@ -52,7 +54,9 @@ function AddForm(props, { refresh }) {
         console.log(response);
         console.log("test axios response = " + response);
 
-        alert("Berhasil menambahkan buku!");
+        toast.success("Berhasil menambahkan buku!");
+        refresh();
+        setShowTambah(false).then(window.location.reload(false));
 
         refresh();
         setShowTambah(false).then(window.location.reload(false));

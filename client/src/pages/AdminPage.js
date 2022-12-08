@@ -10,6 +10,8 @@ import axios from "axios";
 import Navbar2 from "../components/navbar2";
 import DeleteForm from "../components/delete-form";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AdminPage() {
   const [imageList, setImageList] = useState([]);
@@ -61,6 +63,7 @@ export default function AdminPage() {
   return (
     <>
       <Navbar2 />
+      <ToastContainer />
       <section class="px-10 md:flex font-rubik md:px-20 mt-8 justify-between items-center">
         <div class="flex">
           <h1 class="text-2xl mr-4">Koleksi Buku</h1>

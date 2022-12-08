@@ -11,6 +11,8 @@ import useFetch from "../hooks/useFetch";
 import axios from "axios";
 import Sinopsis from "../components/sinopsis";
 import Landingpage from "../components/landingpage";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Booklist() {
   const [imageList, setImageList] = useState([]);
@@ -61,7 +63,7 @@ export default function Booklist() {
     <>
       <Navbar />
       <Landingpage/>
-      
+      <ToastContainer />
       <section class="flex font-rubik px-20 mt-8 items-center" id="ListBuku">
           <h1 class="flex text-2xl mr-4">Koleksi Buku</h1>
           <input
@@ -71,7 +73,6 @@ export default function Booklist() {
          border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none
           focus:border-black focus:ring-black focus:ring-1 sm:text-sm border-10 h-[34px] md:w-[300px]"
             onChange={handleChange}
-            
           ></input>
       </section>
       {/* <section
@@ -85,10 +86,8 @@ export default function Booklist() {
       <hr class="mx-20 my-3 h-px bg-black border-0 z-1"></hr>
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 z-100 gap-4 mx-20" >
         {dataFiltered.map((data) => {
-          return (
-                      
+          return (          
             <div class="bg-white border border-black p-2 rounded "data-aos=" fade-up" data-aos-duration="1000" data-aos-delay="5000" >
-              
               <div class="relative">
                 {isPinjam(data.pinjam) ? (
                   <div class="absolute font-rubik text-sm bg-pink border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">Dipinjam</div>

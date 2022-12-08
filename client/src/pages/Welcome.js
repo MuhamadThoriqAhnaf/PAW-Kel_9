@@ -45,7 +45,7 @@ export default function Booklist() {
 
   const handleChange = (e) => {
     const filterData = data.filter((o) => {
-      return o.judul.toLowerCase().includes(e.target.value);
+      return o.judul.toLowerCase().includes(e.target.value.toLowerCase());
     });
     setDataFiltered(filterData);
   };

@@ -13,11 +13,10 @@ export default function Landingpage() {
             Temukan Buku Pilihan <br /> Sesuai Kebutuhan Anda!
           </p>
           <p className="my-5 lg:leading-normal md:text-justify">
-            MyLibrary membantu Anda untuk mencari buku yang nantinya akan anda
-            pilih jika anda ingin meminjamnya
+          MyLibrary membantu Anda untuk mencari buku yang ingin anda pinjam.
           </p>
           <Link to="ListBuku" smooth={true}>
-            <button className="py-3 mt-3 px-[50px] lg:px-[75px] bg-blue-600 text-white rounded-xl">
+          <button className="py-3 mt-3 px-[50px] lg:px-[75px] bg-blue-600 text-white rounded-xl transform transition duration-300 scale-100 hover:scale-110">
               Lihat List Buku
             </button>
           </Link>

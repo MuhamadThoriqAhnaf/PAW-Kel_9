@@ -64,7 +64,7 @@ export default function AdminPage() {
     <>
       <Navbar2 />
       <ToastContainer />
-      <section class="px-10 md:flex font-rubik md:px-20 mt-8 justify-between items-center">
+      <section class="flex font-rubik md:px-20 px-5 mt-8 justify-between items-center">
         <div class="flex">
           <h1 class="text-lg mr-4">Koleksi Buku</h1>
           <AddForm
@@ -78,16 +78,17 @@ export default function AdminPage() {
             className="placeholder:italic 
           placeholder:text-slate-400 block bg-white md:w-full w-200 border
           border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none
-            focus:border-black focus:ring-black focus:ring-1 sm:text-sm border-10 h-[34px] md:w-[300px]"
-            onChange={handleChange}
+          focus:border-black focus:ring-black focus:ring-1 sm:text-sm border-10 h-[34px] w-[120px] md:w-[300px]"
+          onChange={handleChange}
           ></input>
         </div>
       </section>
       <hr class="mx-10 md:mx-20 my-3 h-px bg-black border-0"></hr>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mx-20">{dataFiltered.map((data) => {
-          return (
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:mx-20 mx-2 ">
+      {dataFiltered.map((data) => {
+        return (
             <div class="border border-black p-2 rounded">
-              <div class="relative">
+            <div class="relative transform transition duration-300 scale-100 hover:scale-105">
                 {isPinjam(data.pinjam) ? (
                   <div class="absolute font-rubik text-xs bg-pink border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">
                     Dipinjam

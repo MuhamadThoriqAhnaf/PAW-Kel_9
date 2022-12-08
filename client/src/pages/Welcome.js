@@ -71,7 +71,7 @@ export default function Booklist() {
             class="placeholder:italic 
         placeholder:text-slate-400 block bg-white md:w-full w-200 border
          border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none
-         focus:border-black focus:ring-black focus:ring-1 sm:text-sm border-10 h-[34px] w-[120px] md:w-[300px]"
+         focus:border-black focus:ring-black focus:ring-1 mt-2  sm:text-sm border-10 h-[34px] w-[120px] md:w-[300px]"
          onChange={handleChange}
           ></input>
       </section>

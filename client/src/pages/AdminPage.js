@@ -39,6 +39,9 @@ export default function AdminPage() {
   const [data, setData] = useState([]);
   const [dataFiltered, setDataFiltered] = useState([]);
 
+  const bookDipinjam = data.filter((o) => {return o.pinjam != null});
+  const bookTersedia = data.filter((o) => {return o.pinjam == null});
+
   useEffect(() => {
     axios.get("http://localhost:5000/api/book").then((response) => {
       setData(response.data.data);
@@ -65,15 +68,28 @@ export default function AdminPage() {
       <Navbar2 />
       <ToastContainer />
       <section class="flex font-rubik md:px-20 px-5 mt-8 justify-between items-center">
-        <div class="flex">
+          <div class="flex">
           <h1 class="text-lg mr-4">Koleksi Buku</h1>
+
           <AddForm
             refresh={() => {
               setRefreshSignal((s) => !s);
             }}
           />
         </div>
-        <div className="flex justify-between">
+        
+        <div class="flex justify-end gap-2">
+          <div class="flex font-rubik gap-2 justify-end items-center">
+            <div class="flex items-baseline gap-1 p-2 text-green">
+              {bookTersedia.length}
+              <span class="text-xs"> buku tersedia</span>
+            </div>
+            <div class="flex items-baseline gap-1 p-2 text-pink">
+              {bookDipinjam.length}
+              <span class="text-xs"> buku dipinjam</span>
+            </div>
+          </div>
+
           <input
             placeholder="Cari Buku..."
             className="placeholder:italic 
@@ -84,11 +100,13 @@ export default function AdminPage() {
           ></input>
         </div>
       </section>
-      <hr class="mx-10 md:mx-20 my-3 h-px bg-black border-0"></hr>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:mx-20 mx-2 ">
+
+      <hr class="mx-10 md:mx-20 my-2 h-px bg-black border-0"></hr>
+      
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:mx-20 mx-2">
         {dataFiltered.map((data) => {
           return (
-            <div class="border border-black p-2 rounded">
+            <div class="border border-black p-2 rounded grid grid-col-2 place-content-between ">
                <div class="relative transform transition duration-300 scale-100 hover:scale-105">
                 {isPinjam(data.pinjam) ? (
                   <div class="absolute font-rubik text-xs bg-pink border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">
@@ -103,12 +121,14 @@ export default function AdminPage() {
                   src={data.imageurl}
                   class="aspect-[7/10] w-full object-cover rounded"
                 />
+
+                <div class="font-rubik text-md p-2">
+                  <p class="font-medium">{data.judul}</p>
+                  <p>{data.penulis}</p>
+                  <p>{data.terbit}</p>
+                </div>
               </div>
-              <div class="font-rubik text-md p-2">
-                <p class="font-medium">{data.judul}</p>
-                <p>{data.penulis}</p>
-                <p>{data.terbit}</p>
-              </div>
+
               <div class="flex items-end justify-between">
                 <UpdateForm data={data} setRefreshSignal={setRefreshSignal} />
                 <DeleteForm data={data} setRefreshSignal={setRefreshSignal} />

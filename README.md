@@ -64,7 +64,8 @@ Run the app in development mode
   npm start
 ```
   
- ## How to Use this Project
+  
+ ## How to Use this Project 
  - for Admin
     - click button Login in Navbar
     - if you want to Login, input this :
@@ -75,7 +76,9 @@ Run the app in development mode
         ```bash
        password : admin
         ```
-        
+  
+  
+  
  ## Documentation
  ### Link before UTS
  link presentasi : [here](https://www.canva.com/design/DAFNfG4ZcrI/Yi0TU9aF1tc3zU_HRau2hA/view?utm_content=DAFNfG4ZcrI&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink

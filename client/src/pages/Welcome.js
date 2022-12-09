@@ -35,6 +35,10 @@ export default function Booklist() {
   const [data, setData] = useState([]);
   const [dataFiltered, setDataFiltered] = useState([]);
 
+  const bookDipinjam = data.filter((o) => {return o.pinjam != null});
+  const bookTersedia = data.filter((o) => {return o.pinjam == null});
+
+
   useEffect(() => {
     axios.get("http://localhost:5000/api/book").then((response) => {
       setData(response.data.data);
@@ -64,21 +68,38 @@ export default function Booklist() {
       <Navbar />
       <Landingpage/>
       <ToastContainer />
-      <section class="flex font-rubik md:px-20 px-5 mt-8 justify-between items-center" id="ListBuku">
-        <h1 class="flex text-2xl mr-4">Koleksi Buku</h1>
+      <section class="grid grid-col-1 md:flex md:justify-between gap-2 place-content-between font-rubik md:px-20 px-5 mt-8 items-center">
+        <h1 class="text-md sm:text-lg mr-4">Koleksi Buku</h1>
+        
+        <div class="flex justify-end gap-2 text-xs md:text-sm z-10">
+          <div class="flex font-rubik gap-2 justify-end items-center">
+            <button type="button" autoFocus id="radio-tersedia" class="flex items-baseline border focus:bg-black focus:text-white rounded-md gap-1 p-2 text-black" onClick={() => setDataFiltered(data)}>
+                {data.length}
+                <span class="hidden md:block text-xs"> semua</span>
+            </button>
+
+            <button type="button" id="radio-tersedia" class="flex items-baseline border focus:bg-green focus:text-white rounded-md gap-1 p-2 text-green" onClick={() => setDataFiltered(bookTersedia)}>
+                {bookTersedia.length}
+                <span class="hidden md:block text-xs"> tersedia</span>
+            </button>
+
+            <button type="button" id="radio-tersedia" class="flex items-baseline border focus:bg-pink focus:text-white rounded-md gap-1 p-2 text-pink" onClick={() => setDataFiltered(bookDipinjam)}>
+                {bookDipinjam.length}
+                <span class="hidden md:block text-xs"> dipinjam</span>
+            </button>
+          </div>
+
           <input
             placeholder="Cari Buku..."
-            class="placeholder:italic 
-        placeholder:text-slate-400 block bg-white md:w-full w-200 border
-         border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none
-         focus:border-black focus:ring-black focus:ring-1 mt-2  sm:text-sm border-10 h-[34px] w-[120px] md:w-[300px]"
-         onChange={handleChange}
+            className="placeholder:italic 
+          placeholder:text-slate-400 block bg-white md:w-full w-200 border
+            rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none
+          focus:border-black focus:ring-black focus:ring-1 sm:text-sm border-10 w-full"
+            onChange={handleChange}
           ></input>
+        </div>
       </section>
-      {/* <section
-        className="h-full lg:h-[100vh] py-[100px] lg:py-0 bg-putih items-center flex-col flex justify-center mx"
-        name="how-it-works"
-      ></section> */}
+
       <img src={ornamen} alt='' className='absolute z-0 -left-72 top-[1100px] w-1/4 max-w-[512px]'></img>
       <img src={ornamen} alt='' className='absolute z-0 top-[110px] w-1/2 max-w-[200px]'></img>
       <img src={ornamen1} alt='' className='absolute right-12 z-0 top-[110px] w-1/2 max-w-[100px]'></img>

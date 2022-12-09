@@ -6,18 +6,17 @@
   MyLibrary merupakan Aplikasi Web yang memiliki fungsi untuk melakukan pembukuan terhadap Novel/Buku
 </p>
 
-
-## Anggota Kelompok
-|No   |   Nama     |   NIM     |
-|----|------------|-----------|
-|1. | Muhammad Farras Ilhami     | 20/456843/TK/50667 |
-|2. | Muhammad Fatin Abimanyu    | 20/456844/TK/50668 |
-|3. | Muhammad Iqbal Reza        | 20/460549/TK/51138 |
-|4. | Muhamad Thoriq Ahnaf       | 20/460553/TK/51142 |
-|5. | Agnes Suarna               | 20/463589/TK/51581 | 
-
 ## Description 
 MyLibrary merupakan Aplikasi Web yang memiliki fungsi untuk membantu librarian dalam mengelola  Novel/Buku yang ada di perpustakaan, dimana nantinya user dapat melihat buku yang dapat dipinjam dan pustakawan dapat melakukan pendataan terhadap buku mulai dari create untuk membuat data buku, melakukan pendataan buku yang dipinjam, hingga pada bagian delete menghapus data buku tadi.
+Proses CRUD hanya dapat dilakukan oleh librarian sebagai admin dari aplikasi MyLirary. 
+- Jika ingin login sebagai admin, silahkan input username dan password dibawah ini : 
+  ```bash
+  username : admin
+   ```
+   
+   ```bash
+   password : admin
+   ```
 
 
 ## How to Run this Project in Local
@@ -91,3 +90,13 @@ Run the app in development mode
  
  ### Link after UTS
  [Presentation about Frontend & Final Integration](https://www.canva.com/design/DAFSQnjrpw8/t7jrgvgGN86NvTU_jpMOpQ/view?utm_content=DAFSQnjrpw8&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+
+## Anggota Kelompok
+|No   |   Nama     |   NIM     |
+|----|------------|-----------|
+|1. | Muhammad Farras Ilhami     | 20/456843/TK/50667 |
+|2. | Muhammad Fatin Abimanyu    | 20/456844/TK/50668 |
+|3. | Muhammad Iqbal Reza        | 20/460549/TK/51138 |
+|4. | Muhamad Thoriq Ahnaf       | 20/460553/TK/51142 |
+|5. | Agnes Suarna               | 20/463589/TK/51581 | 

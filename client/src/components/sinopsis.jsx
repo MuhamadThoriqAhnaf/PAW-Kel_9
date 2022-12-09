@@ -27,7 +27,7 @@ export default function Sinopsis({data: initialData, setRefreshSignal}){
               <div class="flex items-center justify-between mb-2">
                 <p class="font-bold flex items-center">Sinopsis</p>
                 <button
-                  class="font-thin text-xl px-2 border border-blackq rounded"
+                  class="font-thin text-xl px-2 border border-black rounded"
                   type="button"
                   onClick={() => setShowSinopsis(false)}
                 >

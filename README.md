@@ -20,23 +20,59 @@
 MyLibrary merupakan Aplikasi Web yang memiliki fungsi untuk membantu librarian dalam mengelola  Novel/Buku yang ada di perpustakaan, dimana nantinya user dapat melihat buku yang dapat dipinjam dan pustakawan dapat melakukan pendataan terhadap buku mulai dari create untuk membuat data buku, melakukan pendataan buku yang dipinjam, hingga pada bagian delete menghapus data buku tadi.
 
 
-## How to use
+## How to Run this Project in Local
 - [Download](https://nodejs.org/en/download/) and install **Node.js** version `16.15` or higher.
 - Clone this project on your computer.
 - Don't forget to fill the .env files with 
-  ```bash
+
+### Backend
+
+Go to the server project directory
+
+```bash
+  cd server
+```
+
+Install dependencies
+
+```bash
   npm install
+```
+
+Start the server
+
+```bash
   npm run dev
-  ```
+```
+
+### Frontend
+
+Go to the client project directory
+
+```bash
+  cd client
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Run the app in development mode
+
+```bash
+  npm start
+```
   
- ## How to Run this Project
+ ## How to Use this Project
  - for Admin
     - click button Login in Navbar
     - if you want to Login, input this :
        - username : admin
        - password : admin
 
- ## Link
+ ## Documentation
  ### Link before UTS
  link presentasi : [here](https://www.canva.com/design/DAFNfG4ZcrI/Yi0TU9aF1tc3zU_HRau2hA/view?utm_content=DAFNfG4ZcrI&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink
 )

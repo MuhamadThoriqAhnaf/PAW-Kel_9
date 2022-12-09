@@ -67,9 +67,9 @@ export default function AdminPage() {
     <>
       <Navbar2 />
       <ToastContainer />
-      <section class="flex font-rubik md:px-20 px-5 mt-8 justify-between items-center">
-          <div class="flex">
-          <h1 class="text-lg mr-4">Koleksi Buku</h1>
+      <section class="grid grid-col-1 md:flex md:justify-between gap-2 place-content-between font-rubik md:px-20 px-5 mt-8  items-center">
+        <div class="flex">
+          <h1 class="text-md sm:text-lg mr-4">Koleksi Buku</h1>
 
           <AddForm
             refresh={() => {
@@ -78,30 +78,36 @@ export default function AdminPage() {
           />
         </div>
         
-        <div class="flex justify-end gap-2">
+        <div class="flex justify-end gap-2 text-xs md:text-sm">
           <div class="flex font-rubik gap-2 justify-end items-center">
-            <div class="flex items-baseline gap-1 p-2 text-green">
-              {bookTersedia.length}
-              <span class="text-xs"> buku tersedia</span>
-            </div>
-            <div class="flex items-baseline gap-1 p-2 text-pink">
-              {bookDipinjam.length}
-              <span class="text-xs"> buku dipinjam</span>
-            </div>
+            <button type="button" autoFocus id="radio-tersedia" class="flex items-baseline border focus:bg-black focus:text-white rounded-md gap-1 p-2 text-black" onClick={() => setDataFiltered(data)}>
+                {data.length}
+                <span class="hidden md:block text-xs"> semua</span>
+            </button>
+
+            <button type="button" id="radio-tersedia" class="flex items-baseline border focus:bg-green focus:text-white rounded-md gap-1 p-2 text-green" onClick={() => setDataFiltered(bookTersedia)}>
+                {bookTersedia.length}
+                <span class="hidden md:block text-xs"> tersedia</span>
+            </button>
+
+            <button type="button" id="radio-tersedia" class="flex items-baseline border focus:bg-pink focus:text-white rounded-md gap-1 p-2 text-pink" onClick={() => setDataFiltered(bookDipinjam)}>
+                {bookDipinjam.length}
+                <span class="hidden md:block text-xs"> dipinjam</span>
+            </button>
           </div>
 
           <input
             placeholder="Cari Buku..."
             className="placeholder:italic 
           placeholder:text-slate-400 block bg-white md:w-full w-200 border
-          border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none
-          focus:border-black focus:ring-black focus:ring-1 sm:text-sm border-10 h-[34px] w-[120px] md:w-[300px]"
+            rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none
+          focus:border-black focus:ring-black focus:ring-1 sm:text-sm border-10 w-full"
             onChange={handleChange}
           ></input>
         </div>
       </section>
 
-      <hr class="mx-10 md:mx-20 my-2 h-px bg-black border-0"></hr>
+      <hr class="mx-2 md:mx-20 my-2 h-px bg-black border-0"></hr>
       
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:mx-20 mx-2">
         {dataFiltered.map((data) => {

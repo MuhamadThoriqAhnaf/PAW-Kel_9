@@ -6,8 +6,23 @@ import axios from "axios";
 import "flowbite";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
 
-export default function UpdateForm({ data: initialData, setRefreshSignal }) {
+export default function UpdateForm({
+  setRefreshSignal,
+  showUpdate: initialData,
+  setShowUpdate,
+}) {
+  useEffect(() => {
+    setJudul(initialData?.judul);
+    setPenulis(initialData?.penulis);
+    setTerbit(initialData?.terbit);
+    setSinopsis(initialData?.sinopsis);
+    setPinjam(initialData?.pinjam);
+    setPengembalian(initialData?.pengembalian);
+    setImageurl(initialData?.imageurl);
+  }, [initialData]);
+
   const [judul, setJudul] = useState(initialData?.judul);
   const [penulis, setPenulis] = useState(initialData?.penulis);
   const [terbit, setTerbit] = useState(initialData?.terbit);
@@ -15,35 +30,33 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
   const [pinjam, setPinjam] = useState(initialData?.pinjam);
   const [pengembalian, setPengembalian] = useState(initialData?.pengembalian);
   const [imageurl, setImageurl] = useState(initialData?.imageurl);
-  
-  const [showUpdate, setShowUpdate] = React.useState(false);
-
-  const data = {
-    judul: judul,
-    penulis: penulis,
-    terbit: terbit,
-    sinopsis: sinopsis,
-    pinjam: pinjam,
-    pengembalian: pengembalian,
-    imageurl: imageurl,
-  };
 
   const uploadImage = (e) => {
     return new Promise((resolve, reject) => {
-        if (e == null) return;
-        const imageRef = ref(storage, `covers/${e.name}`);
-        uploadBytes(imageRef, e).then((snapshot) => {
-          getDownloadURL(snapshot.ref).then((url) => {
-            setImageurl(url);
-            resolve(url);
-          });
-        })
+      if (e == null) return;
+      const imageRef = ref(storage, `covers/${e.name}`);
+      uploadBytes(imageRef, e).then((snapshot) => {
+        getDownloadURL(snapshot.ref).then((url) => {
+          setImageurl(url);
+          resolve(url);
+        });
+      });
     });
   };
-  
+
   async function Update(e) {
     e.preventDefault();
-    
+
+    const data = {
+      judul: judul,
+      penulis: penulis,
+      terbit: terbit,
+      sinopsis: sinopsis,
+      pinjam: pinjam,
+      pengembalian: pengembalian,
+      imageurl: imageurl,
+    };
+
     const res = await axios.put(
       `http://localhost:5000/api/book/${initialData._id}`,
       data
@@ -51,10 +64,9 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
 
     console.log(res);
     setRefreshSignal((s) => !s);
-    
+
     toast.success("Berhasil memperbarui buku!");
-    setShowUpdate(false)
-    
+    setShowUpdate(false);
   }
 
   function isPinjam(pinjam) {
@@ -65,15 +77,7 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
 
   return (
     <div>
-      <button
-        className="bg-purple border border-black text-white font-rubik font-medium text-xs sm:text-sm md:text-md  md:px-4 px-2 py-1 rounded hover:bg-black transition-colors focus:bg-white focus:text-black"
-        type="button"
-        onClick={() => setShowUpdate(true)}
-      >
-        {" "}
-        Perbarui
-      </button>
-      {showUpdate ? (
+      {!!initialData ? (
         <>
           <div class="flex justify-center items-center font-rubik text-sm sm:text-md fixed inset-0 z-50">
             <div class="bg-white w-100 p-4 sm:p-6 rounded-xl border border-black overflow-y-auto h-screen sm:h-fit">
@@ -81,10 +85,10 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
                 <div class="flex justify-between mb-2">
                   <p class="font-bold flex items-center">Perbarui Buku</p>
                   <button
-                      class="font-thin text-sm sm:text-md px-2 border border-black rounded"
-                      onClick={() => setShowUpdate(false)}
-                    >
-                      x
+                    class="font-thin text-sm sm:text-md px-2 border border-black rounded"
+                    onClick={() => setShowUpdate(false)}
+                  >
+                    x
                   </button>
                 </div>
               </div>
@@ -92,21 +96,26 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
 
               <div class="sm:flex gap-8">
                 <div class="mb-2">
-                    <label for="file">Gambar Sampul</label>
-                    <div>
-                      <img src={imageurl} class="w-[241px] aspect-[7/10] rounded border border-black object-cover"></img>
-                      <input 
-                        type="file"
-                        id="file"
-                        name="file"
-                        accept="image/png, image/jpg, image/jpeg" 
-                        class="flex rounded-md pr-2 border border-black bg-tosca text-xs mt-4 w-[241px]"
-                        onChange={(e) => {
-                          uploadImage(e.target.files[0])
-                        }}
-                        onClick={(e) => {e.target.value = "";}}
-                      ></input>
-                    </div>
+                  <label for="file">Gambar Sampul</label>
+                  <div>
+                    <img
+                      src={imageurl}
+                      class="w-[241px] aspect-[7/10] rounded border border-black object-cover"
+                    ></img>
+                    <input
+                      type="file"
+                      id="file"
+                      name="file"
+                      accept="image/png, image/jpg, image/jpeg"
+                      class="flex rounded-md pr-2 border border-black bg-tosca text-xs mt-4 w-[241px]"
+                      onChange={(e) => {
+                        uploadImage(e.target.files[0]);
+                      }}
+                      onClick={(e) => {
+                        e.target.value = "";
+                      }}
+                    ></input>
+                  </div>
                 </div>
 
                 <form class="grid grid-flow-row gap-2">
@@ -156,14 +165,16 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
                     <br></br>
                   </div>
                   <div class="items-center">
-                    {isPinjam(data.pinjam) ? (
+                    {isPinjam(pinjam) ? (
                       <>
                         <input
                           checked
                           id="dipinjam"
                           type="checkbox"
                           class="text-sm sm:text-md peer w-6 h-6 rounded  focus:ring-purple text-purple"
-                          onClick={() => setPinjam(null) + setPengembalian(null)}
+                          onClick={() =>
+                            setPinjam(null) + setPengembalian(null)
+                          }
                         ></input>
                         <label for="dipinjam" class="ml-2">
                           Buku sedang dipinjam
@@ -214,13 +225,13 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
               </div>
 
               <div class="flex justify-end">
-                  <button
-                    class="bg-purple border border-black break-words text-white font-medium text-sm sm:text-md px-4 py-1 rounded hover:bg-black transition-colors"
-                    onClick={(e) => Update(e)}
-                  >
-                    Perbarui
-                  </button>
-                </div>
+                <button
+                  class="bg-purple border border-black break-words text-white font-medium text-sm sm:text-md px-4 py-1 rounded hover:bg-black transition-colors"
+                  onClick={(e) => Update(e)}
+                >
+                  Perbarui
+                </button>
+              </div>
             </div>
           </div>
           <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>

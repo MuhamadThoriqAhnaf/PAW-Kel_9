@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function AddForm(props, { refresh }) {
+export default function AddForm({setRefreshSignal}) {
   const [judul, setJudul] = useState("");
   const [penulis, setPenulis] = useState("");
   const [terbit, setTerbit] = useState("");
@@ -48,26 +48,20 @@ function AddForm(props, { refresh }) {
 
     console.log("data sebelum post", data);
 
-    axios
+    await axios
       .post("http://localhost:5000/api/book", data)
-      .then(function (response) {
-        console.log(response);
-        console.log("test axios response = " + response);
-
-        toast.success("Berhasil menambahkan buku!");
-        refresh();
-        setShowTambah(false).then(window.location.reload(false));
-
-        refresh();
-        setShowTambah(false).then(window.location.reload(false));
-      })
       .catch(function (error) {
         console.log(error);
       });
+      
+      setRefreshSignal((s) => !s);
+      
+      toast.success("Berhasil menambahkan buku!");
+      setShowTambah(false)
   }
 
   return (
-    <div className={props.className}>
+    <div>
       <button
         className="bg-green border border-black text-white font-rubik font-medium px-4 py-1 text-xs sm:text-sm md:text-md rounded hover:bg-black transition-colors focus:bg-white focus:text-black"
         type="button"
@@ -130,6 +124,7 @@ function AddForm(props, { refresh }) {
                     type="file"
                     id="file"
                     name="file"
+                    accept="image/png, image/jpg, image/jpeg" 
                     class="flex rounded-md border border-black bg-tosca w-full"
                     onChange={(e) => {
                       setImageUpload(e.target.files[0]);
@@ -154,7 +149,7 @@ function AddForm(props, { refresh }) {
               <div class="flex justify-center">
                 <button
                   class="bg-green border border-black break-words text-white font-medium text-xs sm:text-sm md:text-md px-4 py-1 rounded hover:bg-black transition-colors"
-                  onClick={submitForm}
+                  onClick={(e) => submitForm(e)}
                 >
                   Tambah
                 </button>
@@ -167,5 +162,3 @@ function AddForm(props, { refresh }) {
     </div>
   );
 }
-
-export default AddForm;

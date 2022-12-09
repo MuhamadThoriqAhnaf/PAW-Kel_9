@@ -71,11 +71,7 @@ export default function AdminPage() {
         <div class="flex">
           <h1 class="text-md sm:text-lg mr-4">Koleksi Buku</h1>
 
-          <AddForm
-            refresh={() => {
-              setRefreshSignal((s) => !s);
-            }}
-          />
+          <AddForm setRefreshSignal={setRefreshSignal}/>
         </div>
         
         <div class="flex justify-end gap-2 text-xs md:text-sm">

@@ -88,7 +88,7 @@ export default function Booklist() {
         {dataFiltered.map((data) => {
           return (          
             <div class="bg-white border border-black p-2 rounded "data-aos=" fade-up" data-aos-duration="1000" data-aos-delay="5000" >
-              <div class="relative">
+              <div class="relative transform transition duration-300 scale-100 hover:scale-110">
                 {isPinjam(data.pinjam) ? (
                   <div class="absolute font-rubik text-sm bg-pink border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">Dipinjam</div>
                 ) : (

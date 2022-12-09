@@ -89,7 +89,7 @@ export default function AdminPage() {
         {dataFiltered.map((data) => {
           return (
             <div class="border border-black p-2 rounded">
-              <div class="relative transform transition duration-300 scale-100 hover:scale-105">
+               <div class="relative transform transition duration-300 scale-100 hover:scale-110">
                 {isPinjam(data.pinjam) ? (
                   <div class="absolute font-rubik text-xs bg-pink border border-black text-white top-2 left-2 px-4 py-1 shadow-md rounded-md">
                     Dipinjam

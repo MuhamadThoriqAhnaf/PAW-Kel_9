@@ -6,6 +6,8 @@ export default function Sinopsis({data: initialData, setRefreshSignal}){
   const [sinopsis, setSinopsis] = useState(initialData?.sinopsis);
   const [showSinopsis, setShowSinopsis] = React.useState(false);
 
+  useEffect(() => setSinopsis(initialData?.sinopsis))
+
   const data = {
     sinopsis: sinopsis,
   };
@@ -48,7 +50,7 @@ export default function Sinopsis({data: initialData, setRefreshSignal}){
               </form>
             </div>
           </div>
-          
+
           <div className=" opacity-25 fixed inset-0 z-40 bg-black">
           </div>
         </>

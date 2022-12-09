@@ -5,10 +5,15 @@ import "react-toastify/dist/ReactToastify.css";
 import "flowbite";
 import axios from "axios";
 
-export default function DeleteForm({ data: initialData, setRefreshSignal }) {
+export default function DeleteForm({ data: initialData, setRefreshSignal, }) {
+  useEffect(() => {
+    setJudul(initialData?.judul)
+    setPenulis(initialData?.penulis)
+})
+
   const [judul, setJudul] = useState(initialData?.judul);
   const [penulis, setPenulis] = useState(initialData?.penulis);
-  
+
   const [showUpdate, setShowUpdate] = React.useState(false);
   
   const data = {
@@ -59,7 +64,7 @@ export default function DeleteForm({ data: initialData, setRefreshSignal }) {
                 <div> {" "}
                   Yakin menghapus {data.judul} oleh {data.penulis}?</div>
               </form>
-              
+
               <div class="flex justify-center">
                 <button
                   class="bg-pink border border-black break-words text-white font-medium text-xs sm:text-sm md:text-md px-4 py-1 rounded hover:bg-black transition-colors"

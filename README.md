@@ -33,8 +33,8 @@ MyLibrary merupakan Aplikasi Web yang memiliki fungsi untuk membantu librarian d
  - for Admin
     - click button Login in Navbar
     - if you want to Login, input this :
-   -  username : admin
-    - password : admin
+       - username : admin
+       - password : admin
 
  ## Link
  ### Link before UTS

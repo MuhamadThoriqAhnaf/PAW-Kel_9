@@ -69,7 +69,7 @@ function AddForm(props, { refresh }) {
   return (
     <div className={props.className}>
       <button
-        className="bg-[#0B3C49] border border-black w text-white font-rubik font-medium px-4 py-1 rounded hover:bg-black transition-colors focus:bg-white focus:text-black"
+        className="bg-green border border-black text-white font-rubik font-medium px-4 py-1 text-sm md:text-md rounded hover:bg-black transition-colors focus:bg-white focus:text-black"
         type="button"
         onClick={() => setShowTambah(true)}
       >
@@ -79,7 +79,7 @@ function AddForm(props, { refresh }) {
       {showTambah ? (
         <>
           <div class="justify-center font-rubik items-center flex fixed inset-0 z-50">
-            <div class="text-sm sm:text-xl bg-white w-100 p-8 sm:p-10 rounded-xl border border-black">
+            <div class="bg-white w-100 p-4 md:p-6 rounded-xl border border-black overflow-y-auto h-screen md:h-fit">
               <div class="flex items-center justify-between mb-2">
                 <p class="font-bold flex items-center">Tambah Buku</p>
                 <button
@@ -90,7 +90,7 @@ function AddForm(props, { refresh }) {
                 </button>
               </div>
               <hr class="mb-4 h-px bg-black border-0"></hr>
-              <form class="mb-8 grid grid-flow-row gap-4 w-[500px]" onSubmit={submitForm}>
+              <form class="mb-8 grid grid-flow-row gap-4 w-[280px] sm:w-[480px] md:w-[730px] flex-grow" onSubmit={submitForm}>
                 <div>
                   <label for="judul">Judul</label>
                   <input
@@ -98,7 +98,7 @@ function AddForm(props, { refresh }) {
                     onChange={(e) => setJudul(e.target.value)}
                     type="text"
                     id="judul"
-                    class="w-full p-2 rounded bg-[#D9E5D6] border border-black"
+                    class="w-full p-2 rounded bg-tosca border border-black"
                   ></input>
                   <br></br>
                 </div>
@@ -109,7 +109,7 @@ function AddForm(props, { refresh }) {
                     onChange={(e) => setPenulis(e.target.value)}
                     type="text"
                     id="penulis"
-                    class="w-full p-2 rounded bg-[#D9E5D6] border border-black"
+                    class="w-full p-2 rounded bg-tosca border border-black"
                   ></input>
                   <br></br>
                 </div>
@@ -120,7 +120,7 @@ function AddForm(props, { refresh }) {
                     onChange={(e) => setTerbit(e.target.value)}
                     type="text"
                     id="terbit"
-                    class="w-full p-2 rounded bg-[#D9E5D6] border border-black"
+                    class="w-full p-2 rounded bg-tosca border border-black"
                   ></input>
                   <br></br>
                 </div>

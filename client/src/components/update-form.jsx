@@ -76,7 +76,7 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
       {showUpdate ? (
         <>
           <div class="flex justify-center items-center font-rubik text-sm sm:text-md fixed inset-0 z-50">
-            <div class="bg-white w-100 p-4 sm:p-6 rounded-xl border border-black">
+            <div class="bg-white w-100 p-4 sm:p-6 rounded-xl border border-black overflow-y-auto h-screen sm:h-fit">
               <div>
                 <div class="flex justify-between mb-2">
                   <p class="font-bold flex items-center">Perbarui Buku</p>
@@ -90,8 +90,8 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
               </div>
               <hr class="mb-4 h-px bg-black border-0"></hr>
 
-              <div class="flex justify-between gap-8">
-                <div>
+              <div class="sm:flex gap-8">
+                <div class="mb-2">
                     <label for="file">Gambar Sampul</label>
                     <div>
                       <img src={imageurl} class="w-[241px] aspect-[7/10] rounded border border-black object-cover"></img>
@@ -117,7 +117,7 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
                       onChange={(e) => setJudul(e.target.value)}
                       type="text"
                       id="judul"
-                      class="text-sm sm:text-md w-full p-2 rounded bg-[#D9E5D6] border border-black"
+                      class="text-sm sm:text-md w-full p-2 rounded bg-tosca border border-black"
                     ></input>
                     <br></br>
                   </div>
@@ -128,7 +128,7 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
                       onChange={(e) => setPenulis(e.target.value)}
                       type="text"
                       id="penulis"
-                      class="text-sm sm:text-md w-full p-2 rounded bg-[#D9E5D6] border border-black"
+                      class="text-sm sm:text-md w-full p-2 rounded bg-tosca border border-black"
                     ></input>
                     <br></br>
                   </div>
@@ -139,7 +139,7 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
                       onChange={(e) => setTerbit(e.target.value)}
                       type="text"
                       id="terbit"
-                      class="text-sm sm:text-md w-full p-2 rounded bg-[#D9E5D6] border border-black"
+                      class="text-sm sm:text-md w-full p-2 rounded bg-tosca border border-black"
                     ></input>
                     <br></br>
                   </div>
@@ -151,7 +151,7 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
                       type="text"
                       id="deskripsi"
                       rows="5"
-                      class="text-sm sm:text-md w-full p-2 rounded bg-[#D9E5D6] border border-black"
+                      class="text-sm sm:text-md w-full p-2 rounded bg-tosca border border-black"
                     ></textarea>
                     <br></br>
                   </div>
@@ -186,52 +186,23 @@ export default function UpdateForm({ data: initialData, setRefreshSignal }) {
                       date-rangepicker
                       class="mb-4 text-sm sm:text-md flex items-center justify-between invisible peer-checked:visible mt-2"
                     >
-                      <div class="relative">
-                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                          <svg
-                            aria-hidden="true"
-                            class="w-5 h-5 text-gray-500"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              fill-rule="evenodd"
-                              d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                              clip-rule="evenodd"
-                            ></path>
-                          </svg>
-                        </div>
+                      <div class="flex">
                         <input
-                          type="text"
+                          type="date"
                           id="pinjam"
-                          class="text-sm sm:text-md rounded-md border-black focus:ring-purple block w-full pl-10 p-2"
+                          class="text-sm sm:text-md rounded-md border-black focus:ring-purple w-full p-2"
                           placeholder="Tanggal pinjam"
+                          onfocus="(this.type='date')"
                           value={pinjam}
                           onChange={(e) => setPinjam(e.target.value)}
                         ></input>
                       </div>
                       <span class="mx-4 text-gray-500">sampai</span>
-                      <div class="relative">
-                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                          <svg
-                            aria-hidden="true"
-                            class="w-5 h-5 text-gray-500"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              fill-rule="evenodd"
-                              d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                              clip-rule="evenodd"
-                            ></path>
-                          </svg>
-                        </div>
+                      <div class="flex">
                         <input
-                          type="text"
+                          type="date"
                           id="pengembalian"
-                          class="text-sm sm:text-md rounded-md border-black focus:ring-purple block w-full pl-10 p-2"
+                          class="text-sm sm:text-md rounded-md border-black focus:ring-purple w-full p-2"
                           placeholder="Tanggal pengembalian"
                           value={pengembalian}
                           onChange={(e) => setPengembalian(e.target.value)}

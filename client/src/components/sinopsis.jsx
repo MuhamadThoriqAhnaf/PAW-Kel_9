@@ -23,7 +23,7 @@ export default function Sinopsis({data: initialData, setRefreshSignal}){
       {showSinopsis ? (
         <>
           <div class="justify-center flex font-rubik items-center fixed inset-0 z-50">
-            <div class="text-sm sm:text-md bg-white w-100 p-8 sm:p-10 rounded-xl border border-black">
+            <div class="text-sm md:text-md bg-white w-100 p-8 sm:p-10 rounded-xl border border-black">
               <div class="flex items-center justify-between mb-2">
                 <p class="font-bold flex items-center">Sinopsis</p>
                 <button

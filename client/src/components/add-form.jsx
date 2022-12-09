@@ -69,7 +69,7 @@ function AddForm(props, { refresh }) {
   return (
     <div className={props.className}>
       <button
-        className="bg-green border border-black text-white font-rubik font-medium px-4 py-1 text-sm md:text-md rounded hover:bg-black transition-colors focus:bg-white focus:text-black"
+        className="bg-green border border-black text-white font-rubik font-medium px-4 py-1 text-xs md:text-sm rounded hover:bg-black transition-colors focus:bg-white focus:text-black"
         type="button"
         onClick={() => setShowTambah(true)}
       >
@@ -78,12 +78,12 @@ function AddForm(props, { refresh }) {
       </button>
       {showTambah ? (
         <>
-          <div class="justify-center font-rubik items-center flex fixed inset-0 z-50">
+          <div class="justify-center font-rubik text-xs sm:text-sm items-center flex fixed inset-0 z-50">
             <div class="bg-white w-100 p-4 md:p-6 rounded-xl border border-black overflow-y-auto h-screen md:h-fit">
               <div class="flex items-center justify-between mb-2">
                 <p class="font-bold flex items-center">Tambah Buku</p>
                 <button
-                  class="font-thin text-xl px-2 border border-black rounded  hover:bg-black transition-colors"
+                  class="font-thin text-md sm:text-xl px-2 border border-black rounded  hover:bg-black transition-colors"
                   onClick={() => setShowTambah(false)}
                 >
                   x
@@ -130,7 +130,7 @@ function AddForm(props, { refresh }) {
                     type="file"
                     id="file"
                     name="file"
-                    class="flex rounded-md border border-black bg-tosca text-sm w-full"
+                    class="flex rounded-md border border-black bg-tosca w-full"
                     onChange={(e) => {
                       setImageUpload(e.target.files[0]);
                     }}
@@ -146,14 +146,14 @@ function AddForm(props, { refresh }) {
                     type="text"
                     id="deskripsi"
                     rows="4"
-                    class="w-full p-2 rounded bg-[#D9E5D6] border border-black"
+                    class="w-full p-2 rounded bg-tosca border border-black"
                   ></textarea>
                   <br></br>
                 </div>
               </form>
               <div class="flex justify-center">
                 <button
-                  class="bg-green border border-black break-words text-white font-medium text-sm sm:text-xl px-4 py-1 rounded hover:bg-black transition-colors"
+                  class="bg-green border border-black break-words text-white font-medium text-sm sm:text-md px-4 py-1 rounded hover:bg-black transition-colors"
                   onClick={submitForm}
                 >
                   Tambah

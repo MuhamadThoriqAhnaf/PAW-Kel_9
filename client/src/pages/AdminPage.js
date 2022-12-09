@@ -128,7 +128,7 @@ export default function AdminPage() {
                   class="aspect-[7/10] w-full object-cover rounded"
                 />
 
-                <div class="font-rubik text-md p-2">
+                <div class="font-rubik text-xs sm:text-sm md:text-md p-2">
                   <p class="font-medium">{data.judul}</p>
                   <p>{data.penulis}</p>
                   <p>{data.terbit}</p>

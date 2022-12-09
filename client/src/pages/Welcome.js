@@ -120,7 +120,7 @@ export default function Booklist() {
                   class="aspect-[7/10] object-cover w-full rounded"
                 />
               </div>
-              <div class="font-rubik text-lg p-2">
+              <div class="font-rubik text-xs sm:text-sm md:text-md p-2">
                 <p class="font-medium">{data.judul}</p>
                 <p>{data.penulis}</p>
                 <p>{data.terbit}</p>

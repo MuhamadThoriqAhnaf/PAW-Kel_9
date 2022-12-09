@@ -69,7 +69,7 @@ function AddForm(props, { refresh }) {
   return (
     <div className={props.className}>
       <button
-        className="bg-green border border-black text-white font-rubik font-medium px-4 py-1 text-xs md:text-sm rounded hover:bg-black transition-colors focus:bg-white focus:text-black"
+        className="bg-green border border-black text-white font-rubik font-medium px-4 py-1 text-xs sm:text-sm md:text-md rounded hover:bg-black transition-colors focus:bg-white focus:text-black"
         type="button"
         onClick={() => setShowTambah(true)}
       >
@@ -153,7 +153,7 @@ function AddForm(props, { refresh }) {
               </form>
               <div class="flex justify-center">
                 <button
-                  class="bg-green border border-black break-words text-white font-medium text-sm sm:text-md px-4 py-1 rounded hover:bg-black transition-colors"
+                  class="bg-green border border-black break-words text-white font-medium text-xs sm:text-sm md:text-md px-4 py-1 rounded hover:bg-black transition-colors"
                   onClick={submitForm}
                 >
                   Tambah

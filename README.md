@@ -78,7 +78,9 @@ Run the app in development mode
         ```bash
        password : admin
         ```
-  
+        
+  ## Deploy
+  - [Deployment this Project](https://deploy-i6l3md5l9-muhamadthoriqahnaf.vercel.app/)
   
   
  ## Documentation

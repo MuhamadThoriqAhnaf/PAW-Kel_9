@@ -13,7 +13,7 @@ export default function Sinopsis({data: initialData, setRefreshSignal}){
   return (
     <div>
       <button
-        className="bg-[#0B3C49] border border-black w text-white font-rubik font-medium px-4 py-1 rounded hover:bg-black transition-colors focus:bg-white focus:text-black"
+        className="bg-green border border-black w text-white font-rubik font-medium px-4 py-1 rounded hover:bg-black transition-colors focus:bg-white focus:text-black"
         type="button"
         onClick={() => setShowSinopsis(true)}
       >
@@ -23,7 +23,7 @@ export default function Sinopsis({data: initialData, setRefreshSignal}){
       {showSinopsis ? (
         <>
           <div class="justify-center flex font-rubik items-center fixed inset-0 z-50">
-            <div class="text-sm sm:text-xl bg-white w-100 p-8 sm:p-10 rounded-xl border border-black">
+            <div class="text-sm sm:text-md bg-white w-100 p-8 sm:p-10 rounded-xl border border-black">
               <div class="flex items-center justify-between mb-2">
                 <p class="font-bold flex items-center">Sinopsis</p>
                 <button
@@ -35,7 +35,7 @@ export default function Sinopsis({data: initialData, setRefreshSignal}){
                 </button>
               </div>
               <hr class="mb-4 h-px bg-black border-0"></hr>
-              <form class="w-[800px]">
+              <form class="w-[300px] sm:w-[500px] md:w-[750px]">
                 <div>
                   <p
                     class="cursor-default w-full p-2 rounded border-0 text-justify"

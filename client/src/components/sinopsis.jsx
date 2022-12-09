@@ -26,6 +26,7 @@ export default function Sinopsis({data: initialData, setRefreshSignal}){
             <div class="text-sm md:text-md bg-white w-100 p-8 sm:p-10 rounded-xl border border-black">
               <div class="flex items-center justify-between mb-2">
                 <p class="font-bold flex items-center">Sinopsis</p>
+                
                 <button
                   class="font-thin text-xl px-2 border border-black rounded"
                   type="button"
@@ -34,7 +35,9 @@ export default function Sinopsis({data: initialData, setRefreshSignal}){
                   x
                 </button>
               </div>
+              
               <hr class="mb-4 h-px bg-black border-0"></hr>
+              
               <form class="w-[300px] sm:w-[500px] md:w-[750px]">
                 <div>
                   <p
@@ -45,6 +48,7 @@ export default function Sinopsis({data: initialData, setRefreshSignal}){
               </form>
             </div>
           </div>
+          
           <div className=" opacity-25 fixed inset-0 z-40 bg-black">
           </div>
         </>

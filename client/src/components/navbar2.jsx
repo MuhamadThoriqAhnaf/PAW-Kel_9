@@ -1,8 +1,7 @@
 import React from "react";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const signout = async (id) => {
   await axios.post(`http://localhost:5000/api/auth/signout`);
@@ -19,13 +18,16 @@ export default function Navbar2() {
   return (
     <>
       <ToastContainer />
+      
       <div className="rounded-b-3xl flex px-10 md:px-20 md:py-[16px] items-center justify-between bg-[#D9E5D6] h-[80px]">
+      
       <a class="flex">
         <img src="logo-black.svg " class="h-10 flex-auto"></img>
         <span class=" ml-2 mt-2 font-bold font-rubik text-md sm:text-lg md:text-xl flex-auto">
           MyLibrary
         </span>
       </a>
+      
       <button
         type="button"
         onClick={() => signout()}

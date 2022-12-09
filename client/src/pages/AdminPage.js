@@ -1,21 +1,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { storage } from "../firebase";
-import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
-import Navbar from "../components/navbar";
+import { useNavigate } from "react-router-dom";
 import AddForm from "../components/add-form";
 import UpdateForm from "../components/update-form";
-import useFetch from "../hooks/useFetch";
-import axios from "axios";
 import Navbar2 from "../components/navbar2";
 import DeleteForm from "../components/delete-form";
-import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 export default function AdminPage() {
-  const [imageList, setImageList] = useState([]);
-  const imageListRef = ref(storage, "covers/");
   const [refreshSignal, setRefreshSignal] = useState(false);
   const navigate = useNavigate();
 
@@ -25,16 +19,6 @@ export default function AdminPage() {
       navigate("/login");
     }
   });
-
-  useEffect(() => {
-    listAll(imageListRef).then((response) => {
-      response.items.forEach((item) => {
-        getDownloadURL(item).then((url) => {
-          setImageList((prev) => [...prev, url]);
-        });
-      });
-    });
-  }, []);
 
   const [data, setData] = useState([]);
   const [dataFiltered, setDataFiltered] = useState([]);

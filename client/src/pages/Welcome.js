@@ -1,43 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { storage } from "../firebase";
-import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import Navbar from "../components/navbar";
-import Aos from "aos";
-import "aos/dist/aos.css";
 import ornamen from "../assets/ornamen.png"
 import ornamen1 from "../assets/Vector.png"
 import ornamen2 from "../assets/Frame.png"
-import useFetch from "../hooks/useFetch";
-import axios from "axios";
 import Sinopsis from "../components/sinopsis";
 import Landingpage from "../components/landingpage";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "aos/dist/aos.css";
+import axios from "axios";
 
 export default function Booklist() {
-  const [imageList, setImageList] = useState([]);
-  const imageListRef = ref(storage, "covers/");
   const [refreshSignal, setRefreshSignal] = useState(false);
-  const [ShowSinopsis, setShowSinopsis] = React.useState(false);
-  useEffect(() => {
-    listAll(imageListRef).then((response) => {
-      response.items.forEach((item) => {
-        getDownloadURL(item).then((url) => {
-          setImageList((prev) => [...prev, url]);
-        });
-      });
-    });
-  }, []);
-  useEffect(() => {
-    Aos.init({ duration: 2000 });
-}, []);
 
   const [data, setData] = useState([]);
   const [dataFiltered, setDataFiltered] = useState([]);
 
   const bookDipinjam = data.filter((o) => {return o.pinjam != null});
   const bookTersedia = data.filter((o) => {return o.pinjam == null});
-
 
   useEffect(() => {
     axios.get("http://localhost:5000/api/book").then((response) => {
@@ -62,14 +42,13 @@ export default function Booklist() {
       return false;
   }
 
-
   return (
     <>
       <Navbar />
       <Landingpage/>
       <ToastContainer />
-      <section class="grid grid-col-1 md:flex md:justify-between gap-2 place-content-between font-rubik md:px-20 px-5 mt-8 items-center">
-        <h1 class="text-md sm:text-lg mr-4">Koleksi Buku</h1>
+      <section id="ListBuku" class="grid grid-col-1 md:flex md:justify-between gap-2 place-content-between font-rubik md:px-20 px-5 mt-8 items-center">
+        <h1 class="text-md sm:text-lg mt-4 mr-4">Koleksi Buku</h1>
         
         <div class="flex justify-end gap-2 text-xs md:text-sm z-10">
           <div class="flex font-rubik gap-2 justify-end items-center">
@@ -104,7 +83,9 @@ export default function Booklist() {
       <img src={ornamen} alt='' className='absolute z-0 top-[110px] w-1/2 max-w-[200px]'></img>
       <img src={ornamen1} alt='' className='absolute right-12 z-0 top-[110px] w-1/2 max-w-[100px]'></img>
       <img src={ornamen2} alt='' className='absolute right-10 z-0 top-[110px] w-1/4 max-w-[100px]'></img>
+
       <hr class="mx-20 my-3 h-px bg-black border-0 z-1"></hr>
+
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:mx-20 mx-2">
         {dataFiltered.map((data) => {
           return (          

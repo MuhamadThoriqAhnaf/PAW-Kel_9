@@ -2,10 +2,9 @@ import React from "react";
 import { useState, } from "react";
 import { storage } from "../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 export default function AddForm({setRefreshSignal}) {
   const [judul, setJudul] = useState("");
@@ -16,8 +15,6 @@ export default function AddForm({setRefreshSignal}) {
   const [imageUpload, setImageUpload] = useState(null);
   const [imageList, setImageList] = useState([]);
   const [showTambah, setShowTambah] = React.useState(false);
-
-  const navigate = useNavigate();
 
   const data = {
     judul: judul,
@@ -83,7 +80,9 @@ export default function AddForm({setRefreshSignal}) {
                   x
                 </button>
               </div>
+
               <hr class="mb-4 h-px bg-black border-0"></hr>
+
               <form class="mb-8 grid grid-flow-row gap-4 w-[280px] sm:w-[480px] md:w-[730px] flex-grow" onSubmit={submitForm}>
                 <div>
                   <label for="judul">Judul</label>
@@ -96,6 +95,7 @@ export default function AddForm({setRefreshSignal}) {
                   ></input>
                   <br></br>
                 </div>
+
                 <div>
                   <label for="penulis">Penulis</label>
                   <input
@@ -107,6 +107,7 @@ export default function AddForm({setRefreshSignal}) {
                   ></input>
                   <br></br>
                 </div>
+
                 <div>
                   <label for="terbit">Terbit</label>
                   <input
@@ -118,6 +119,7 @@ export default function AddForm({setRefreshSignal}) {
                   ></input>
                   <br></br>
                 </div>
+
                 <div>
                   <label for="file">Gambar Sampul</label>
                   <input
@@ -131,6 +133,7 @@ export default function AddForm({setRefreshSignal}) {
                     }}
                   ></input>
                 </div>
+
                 <div>
                   <label for="deskripsi" class="">
                     Deskripsi
@@ -145,7 +148,9 @@ export default function AddForm({setRefreshSignal}) {
                   ></textarea>
                   <br></br>
                 </div>
+
               </form>
+
               <div class="flex justify-center">
                 <button
                   class="bg-green border border-black break-words text-white font-medium text-xs sm:text-sm md:text-md px-4 py-1 rounded hover:bg-black transition-colors"
@@ -156,6 +161,7 @@ export default function AddForm({setRefreshSignal}) {
               </div>
             </div>
           </div>
+          
           <div class="opacity-25 fixed inset-0 z-40 bg-black"></div>
         </>
       ) : null}

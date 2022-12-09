@@ -1,12 +1,11 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { storage } from "../firebase";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import axios from "axios";
-import "flowbite";
-import { ToastContainer, toast } from "react-toastify";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useEffect } from "react";
+import "flowbite";
+import axios from "axios";
 
 export default function UpdateForm({
   setRefreshSignal,

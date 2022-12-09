@@ -1,11 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { storage } from "../firebase";
-import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
-import axios from "axios";
-import "flowbite";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "flowbite";
+import axios from "axios";
 
 export default function DeleteForm({ data: initialData, setRefreshSignal }) {
   const [judul, setJudul] = useState(initialData?.judul);
@@ -46,6 +44,7 @@ export default function DeleteForm({ data: initialData, setRefreshSignal }) {
             <div class="text-xs sm:text-sm md:text-md bg-white w-100 p-4 sm:p-6 rounded-xl border border-black">
               <div class="flex items-center justify-between mb-2">
                 <p class="font-bold flex items-center">Hapus Buku</p>
+                
                 <button
                   class="font-thin text-xl px-2 border border-black rounded"
                   onClick={() => setShowUpdate(false)}
@@ -53,11 +52,14 @@ export default function DeleteForm({ data: initialData, setRefreshSignal }) {
                   x
                 </button>
               </div>
+
               <hr class="mb-4 h-px bg-black border-0"></hr>
+              
               <form class="mb-8 grid grid-flow-row gap-4">
                 <div> {" "}
                   Yakin menghapus {data.judul} oleh {data.penulis}?</div>
               </form>
+              
               <div class="flex justify-center">
                 <button
                   class="bg-pink border border-black break-words text-white font-medium text-xs sm:text-sm md:text-md px-4 py-1 rounded hover:bg-black transition-colors"

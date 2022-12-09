@@ -23,7 +23,6 @@ MyLibrary merupakan Aplikasi Web yang memiliki fungsi untuk membantu librarian d
 ## How to Run this Project in Local
 - [Download](https://nodejs.org/en/download/) and install **Node.js** version `16.15` or higher.
 - Clone this project on your computer.
-- Don't forget to fill the .env files with 
 
 ### Backend
 
@@ -69,9 +68,14 @@ Run the app in development mode
  - for Admin
     - click button Login in Navbar
     - if you want to Login, input this :
-       - username : admin
-       - password : admin
-
+        ```bash
+       username : admin
+        ```
+     
+        ```bash
+       password : admin
+        ```
+        
  ## Documentation
  ### Link before UTS
  link presentasi : [here](https://www.canva.com/design/DAFNfG4ZcrI/Yi0TU9aF1tc3zU_HRau2hA/view?utm_content=DAFNfG4ZcrI&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink

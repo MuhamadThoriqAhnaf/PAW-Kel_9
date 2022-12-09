@@ -36,3 +36,5 @@ MyLibrary merupakan Aplikasi Web yang memiliki fungsi untuk membantu librarian d
 
  link video : [here](https://drive.google.com/file/d/1VYAE70NQj8QOFoVWsub8J6sst-l2HAd4/view?usp=sharing)
  
+ ### Link after UTS
+ Link Presentasi : [here](https://www.canva.com/design/DAFSQnjrpw8/t7jrgvgGN86NvTU_jpMOpQ/view?utm_content=DAFSQnjrpw8&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)

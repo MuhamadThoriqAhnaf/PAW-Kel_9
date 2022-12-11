@@ -80,7 +80,7 @@ Run the app in development mode
         ```
         
   ## Deploy
-  - [Deployment this Project](https://deploy-i6l3md5l9-muhamadthoriqahnaf.vercel.app/)
+  - [Deployment this Project](https://deploy-web-muhamadthoriqahnaf.vercel.app/)
   
   
  ## Documentation
